@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	   
+  <h:head>
+    <title>Login</title> 
+        
+    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  </h:head>
+
+	<h:body>
+		<div class="container">
+			<div class="jumbotron col-sm-offset-3 col-sm-6">
+				<h:form class="form-horizontal" role="form">
+				  
+				  
+				  	<h:messages infoClass="info" errorClass="error" />
+				  
+				  <div class="form-group">
+					  <div class="col-sm-12">
+					  	<h:outputText class="label-control" value="Login" style="font-size:30px; color:#A9A9A9;"/>
+					  </div>
+				  </div>
+				  
+				  <div class="form-group">
+					  <div class="col-sm-12">
+					  	<h:inputText type="email" class="form-control" id="email" pt:placeholder="Enter email" value="#{loginBean.usuario.email}" 
+					  												required="true" requiredMessage="Campo Obrigatório: Email"/>
+					  </div>
+				  </div>
+				  
+				  <div class="form-group">
+					  <div class="col-sm-12">
+					  	<h:inputSecret class="form-control" id="senha" pt:placeholder="Enter password" value="#{loginBean.usuario.senha}" 
+					  												required="true" requiredMessage="Campo Obrigatório: Senha"/>
+					  </div>
+				  </div>
+				  
+				   <div class="form-group">
+					  <div class="col-sm-12">
+					  	<h:commandButton class="btn btn-success btn-block btn-lg" id="btnEntrar" action="#{loginBean.logar}" value="Entrar"/>
+					  </div>
+				  </div>
+				  
+				  <div class="form-group">
+					  <div class="col-sm-12">
+					  	<h:commandLink class="btn btn-link btn-block btn-lg" id="btnEsqueceuSenha" value="Esqueci a Senha"/>
+					  </div>
+				  </div>
+				</h:form>
+			</div>
+		</div>
+	</h:body>
+</html>
