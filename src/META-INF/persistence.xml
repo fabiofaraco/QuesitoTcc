@@ -12,7 +12,7 @@
 			
 		<property
 			name ="hibernate.hbm2ddl.auto"
-			value ="update"/>
+			value ="create"/>
 			
 		<property
 			name ="javax.persistence.jdbc.driver"
