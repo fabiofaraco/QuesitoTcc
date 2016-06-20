@@ -1,5 +1,8 @@
 package bean;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +22,41 @@ public class Usuario {
 	@Column(nullable=false, length=50)
 	private String senha;
 	
+	@Column(name="id_perfil", nullable=false)
+	private Perfil perfil;
+	
+	@Column(nullable=false, length=50)
+	private String rg;
+	
+	@Column(nullable=false, length=50)
+	private String cpf;
+	
+	private Calendar dataNascimento = new GregorianCalendar();
+	
+	public Perfil getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+	public String getRg() {
+		return rg;
+	}
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
 	public int getId() {
 		return id;
 	}
