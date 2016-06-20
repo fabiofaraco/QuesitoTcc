@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -23,8 +25,19 @@ public class UsuarioDao {
 			
 			return usuario;
 		} catch(NoResultException e) {
-			e.getMessage();
 			return null;
+		} finally {
+			manager.close();
+		}
+	}
+	
+//	---------------------------------------------------------------------------------------------------------
+	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> getLista() {
+		try {
+			Query query = manager.createQuery("select u from Usuario u");
+			return query.getResultList();
 		} finally {
 			manager.close();
 		}
