@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +23,7 @@ public class Usuario {
 	@Column(nullable=false, length=50)
 	private String senha;
 	
-	@Column(name="id_perfil", nullable=false)
+	@ManyToOne
 	private Perfil perfil;
 	
 	@Column(nullable=false, length=50)
@@ -31,7 +32,11 @@ public class Usuario {
 	@Column(nullable=false, length=50)
 	private String cpf;
 	
+	@Column(nullable=false)
 	private Calendar dataNascimento = new GregorianCalendar();
+	
+	@Column(nullable=false, length=100)
+	private String nome;
 	
 	public Perfil getPerfil() {
 		return perfil;
@@ -74,5 +79,11 @@ public class Usuario {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core">
+	   
+<h:head>
+  <title>Cadastro de Usuários</title>
+  <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+	<div class="container">
+		<div class="jumbotron">
+			<h:form id="frm" class="form-horizontal" method="post">
+				<div class="form-group">
+					<h:outputLabel for="nome" class="control-label col-sm-2" value="Nome" style="text-align:right;"/>
+					<div class="col-sm-8">
+						  	<h:inputText class="form-control" id="nome" value="#{usuarioBean.usuario.nome}" 
+						  												required="true" requiredMessage="Campo Obrigatório: nome"/>
+					</div>	
+				</div>
+				
+				<div class="form-group">
+					<h:outputLabel for="rg" class="control-label col-sm-2" value="RG" style="text-align:right;"/>
+					<div class="col-sm-8">
+						  	<h:inputText class="form-control" id="rg" value="#{usuarioBean.usuario.rg}" 
+						  												required="true" requiredMessage="Campo Obrigatório: RG"/>
+					</div>	
+				</div>
+				
+				<div class="form-group">
+					<h:outputLabel for="cpf" class="control-label col-sm-2" value="CPF" style="text-align:right;"/>
+					<div class="col-sm-8">
+						  	<h:inputText class="form-control" id="cpf" value="#{usuarioBean.usuario.cpf}" 
+						  												required="true" requiredMessage="Campo Obrigatório: CPF"/>
+					</div>	
+				</div>
+				
+				<div class="form-group">
+					<h:outputLabel class="control-label col-sm-2"  value="Perfil" for="perfil"/>
+					<div class="col-sm-8">
+						<h:selectOneMenu class="form-control" id="perfil" value = "#{usuarioBean.usuario.perfil.id}">
+							 <f:selectItem itemLabel ="Selecione..." noSelectionOption ="true" />
+							 <f:selectItems
+								 value="#{usuarioBean.perfis}"
+								 var="perfil"
+								 itemValue="#{perfil.id}"
+								 itemLabel="#{perfil.descricao}"/>
+						 </h:selectOneMenu>	
+				    </div>
+				</div>
+				
+				<div class="form-group">
+					<h:outputLabel for="email" class="control-label col-sm-2" value="Email" style="text-align:right;"/>
+					<div class="col-sm-8">
+						  	<h:inputText class="form-control" id="email" value="#{usuarioBean.usuario.email}" 
+						  												required="true" requiredMessage="Campo Obrigatório: Email"/>
+					</div>	
+				</div>
+				
+				<div class="form-group">
+					<h:outputLabel for="senha" class="control-label col-sm-2" value="senha" style="text-align:right;"/>
+					<div class="col-sm-8">
+						  	<h:inputText class="form-control" id="senha" value="#{usuarioBean.usuario.senha}" 
+						  												required="true" requiredMessage="Campo Obrigatório: Senha"/>
+					</div>	
+				</div>
+				
+					
+				<h:commandButton id="btnSalvar" value="Salvar" class="btn btn-success col-sm-offset-8 col-sm-2" action="#{usuarioBean.salvar}"/>
+				
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>
