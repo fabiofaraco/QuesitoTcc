@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="usuarios")
@@ -23,8 +24,9 @@ public class Usuario {
 	@Column(nullable=false, length=50)
 	private String senha;
 	
+	@Column(name="id_perfil")
 	@ManyToOne
-	private Perfil perfil;
+	private Perfil perfil = new Perfil();
 	
 	@Column(nullable=false, length=50)
 	private String rg;
@@ -38,6 +40,15 @@ public class Usuario {
 	@Column(nullable=false, length=100)
 	private String nome;
 	
+	@Transient
+	private String confirmaSenha;
+	
+	public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
+	}
 	public Perfil getPerfil() {
 		return perfil;
 	}
