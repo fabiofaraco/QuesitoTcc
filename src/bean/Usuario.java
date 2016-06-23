@@ -24,7 +24,6 @@ public class Usuario {
 	@Column(nullable=false, length=50)
 	private String senha;
 	
-	@Column(name="id_perfil")
 	@ManyToOne
 	private Perfil perfil = new Perfil();
 	
