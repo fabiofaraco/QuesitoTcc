@@ -6,12 +6,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import comum.ManagedBeanPadrao;
+
 import bean.Perfil;
 import bean.Usuario;
 import dao.UsuarioDao;
 
 @ManagedBean
-public class UsuarioBean {
+public class UsuarioBean extends ManagedBeanPadrao {
 	private UsuarioDao dao = new UsuarioDao();
 	private Usuario usuario = new Usuario();
 	private List<Usuario> usuarios;
@@ -22,22 +24,32 @@ public class UsuarioBean {
 	
 	public String salvar() {
 		try{
-			dao.incluir(usuario);
-			usuario = new Usuario();
-			
-			FacesContext.getCurrentInstance()
- 				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operação Realizada!", "Usuário inserido com sucesso!"));
+			if(usuario.getId() == 0) {
+				dao.incluir(usuario);
+				usuario = new Usuario();
+				
+				FacesContext.getCurrentInstance()
+	 				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operação Realizada!", "Usuário inserido com sucesso!"));
+			} else {
+				dao.alterar(usuario);
+				
+				FacesContext.getCurrentInstance()
+	 				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operação Realizada!", "Usuário alterado com sucesso!"));
+			}
 		} catch(Exception e) {
 			 FacesContext.getCurrentInstance()
 	 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "Erro no Login!"));
 		}
-		return null;
+		return "lista-usuario";
 	}
 //	---------------------------------------------------------------------------------------------------
 	
 	public void remover() {
 		try{
-			dao.remover(1);
+			dao.remover(getParameterInt("id"));
+			
+			FacesContext.getCurrentInstance()
+				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Operação realizada!", "Usuário Removido com sucesso!"));
 		} catch(Exception e) {
 			FacesContext.getCurrentInstance()
  				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Operação não realizada!", "Não foi possível excluir o usuário selecionado!"));
@@ -47,7 +59,11 @@ public class UsuarioBean {
 //	---------------------------------------------------------------------------------------------------
 	
 	public String carregarAlteracao() {
-		usuario = dao.buscar(1);
+		int id = getParameterInt("id");
+		
+		usuario = dao.buscar(id);
+		usuario.setId(id);
+		
 		return "cadastro-usuario";
 	}
 	

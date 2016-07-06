@@ -8,56 +8,61 @@
   <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 </h:head>
 <h:body>
-	<h:form id="frm" method="post">
+	<div class="container">
+		<h:form id="frm" method="post">
+			<h:messages showDetail="true"/>
+			<h:commandButton  value="Novo" action="cadastro-usuario" class="btn btn-default"/>
 		
-		<h:commandButton  value="Novo" action="#{listaUsuarioBean.carregaCadastro}" class="btn btn-default"/>
-	
-		 <div class="table-responsive">
-		  	<h:dataTable id="tabelaUsuarios" value="#{listaUsuarioBean.usuarios}" var="usuario" class="table">
-		    	<h:column>
-			    	<f:facet name="header">
-			      		<h:outputText  value="Nome"/>
-			    	</f:facet>
-			     	<h:outputText value="#{usuario.nome}"/>
-			  	</h:column>
-			  	
-			  	<h:column>
-			    	<f:facet name="header">
-			      		<h:outputText  value="RG"/>
-			    	</f:facet>
-			     	<h:outputText value="#{usuario.rg}"/>
-			  	</h:column>
-			  	
-			  	<h:column>
-			    	<f:facet name="header">
-			      		<h:outputText  value="CPF"/>
-			    	</f:facet>
-			     	<h:outputText value="#{usuario.cpf}"/>
-			  	</h:column>
-			  	
-			  	<h:column>
-			    	<f:facet name="header">
-			      		<h:outputText  value="Email"/>
-			    	</f:facet>
-			     	<h:outputText value="#{usuario.email}"/>
-			  	</h:column>
-			  	
-			  	<h:column>
-			    	<f:facet name="header">
-			      		<h:outputText  value=""/>
-			    	</f:facet>
-					  <h:commandButton class="btn btn-primary" value="Alterar" />
-			  	</h:column>
-			  	
-			  	<h:column>
-			    	<f:facet name="header">
-			      		<h:outputText  value=""/>
-			    	</f:facet>
-					  <h:commandButton class="btn btn-danger" value="Excluir"/>
-			  	</h:column>
-		    </h:dataTable>
-		</div> 
-	</h:form>
-
+			 <div class="table-responsive">
+			  	<h:dataTable id="tabelaUsuarios" value="#{usuarioBean.usuarios}" var="usuario" class="table">
+			    	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value="Nome"/>
+				    	</f:facet>
+				     	<h:outputText value="#{usuario.nome}"/>
+				  	</h:column>
+				  	
+				  	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value="RG"/>
+				    	</f:facet>
+				     	<h:outputText value="#{usuario.rg}"/>
+				  	</h:column>
+				  	
+				  	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value="CPF"/>
+				    	</f:facet>
+				     	<h:outputText value="#{usuario.cpf}"/>
+				  	</h:column>
+				  	
+				  	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value="Email"/>
+				    	</f:facet>
+				     	<h:outputText value="#{usuario.email}"/>
+				  	</h:column>
+				  	
+				  	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value=""/>
+				    	</f:facet>
+						  <h:commandButton class="btn btn-primary" value="Alterar" action="#{usuarioBean.carregarAlteracao}">
+						  	<f:param name="id" value="#{usuario.id}"></f:param>
+						  </h:commandButton>
+				  	</h:column>
+				  	
+				  	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value=""/>
+				    	</f:facet>
+						  <h:commandButton class="btn btn-danger" value="Excluir" actionListener="#{usuarioBean.remover}" render="@all">
+						  	<f:param name="id" value="#{usuario.id}"></f:param>
+						  </h:commandButton>
+				  	</h:column>
+			    </h:dataTable>
+			</div> 
+		</h:form>
+	</div>
 </h:body>
 </html>
