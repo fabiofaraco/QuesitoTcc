@@ -41,33 +41,70 @@ public class UsuarioDao {
 			manager.close();
 		}
 	}
+
+//	---------------------------------------------------------------------------------------------------------
+	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> getListaUsuarios() {
+		EntityManager manager = PersistenceUtil.getEntityManager();
+		try{
+			Query query = manager.createQuery("select u from Usuario u");
+			return query.getResultList();
+		} finally {
+			manager.close();
+		}
+	}
 	
 //	---------------------------------------------------------------------------------------------------------
 	
 	public void incluir(Usuario usuario) {
 		EntityManager manager = PersistenceUtil.getEntityManager();
-		manager.getTransaction().begin();
-		manager.persist(usuario);
-		manager.getTransaction().commit();
-		manager.close();
+		
+		try {
+			manager.getTransaction().begin();
+			manager.persist(usuario);
+			manager.getTransaction().commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			manager.getTransaction().rollback();
+		} finally {
+			manager.close();
+		}
 	}
 	
 //	---------------------------------------------------------------------------------------------------------
 	
 	public void alterar(Usuario usuario) {
 		EntityManager manager = PersistenceUtil.getEntityManager();
-		manager.getTransaction().begin();
-		manager.merge(usuario);
-		manager.getTransaction().commit();
-		manager.close();
+		
+		try {
+			manager.getTransaction().begin();
+			manager.merge(usuario);
+			manager.getTransaction().commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			manager.getTransaction().rollback();
+		} finally {
+			manager.close();
+		}
 	}
 	
 //	---------------------------------------------------------------------------------------------------------
 	
 	public void remover(int id) {
-		Usuario usuario = buscar(id);
 		EntityManager manager = PersistenceUtil.getEntityManager();
-		manager.remove(usuario);
+		Usuario usuario = manager.find(Usuario.class, id);
+		
+		try {
+			manager.getTransaction().begin();
+			manager.remove(usuario);
+			manager.getTransaction().commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			manager.getTransaction().rollback();
+		} finally {
+			manager.close();
+		}
 	}
 	
 //	---------------------------------------------------------------------------------------------------------

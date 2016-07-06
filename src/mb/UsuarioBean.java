@@ -33,6 +33,23 @@ public class UsuarioBean {
 		}
 		return null;
 	}
+//	---------------------------------------------------------------------------------------------------
+	
+	public void remover() {
+		try{
+			dao.remover(1);
+		} catch(Exception e) {
+			FacesContext.getCurrentInstance()
+ 				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Operação não realizada!", "Não foi possível excluir o usuário selecionado!"));
+		}
+	}
+	
+//	---------------------------------------------------------------------------------------------------
+	
+	public String carregarAlteracao() {
+		usuario = dao.buscar(1);
+		return "cadastro-usuario";
+	}
 	
 //	---------------------------------------------------------------------------------------------------	
 	
@@ -43,19 +60,17 @@ public class UsuarioBean {
 	
 //	---------------------------------------------------------------------------------------------------	
 	
+	public List<Usuario> getUsuarios() {
+		usuarios = dao.getListaUsuarios();
+		return usuarios;
+	}
+
+//	---------------------------------------------------------------------------------------------------
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	
-	
 }
