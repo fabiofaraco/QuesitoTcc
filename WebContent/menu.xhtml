@@ -10,13 +10,16 @@
 
 	<h:body>
 		<div class="container">
-			 <div class="row">
-				  <div class="col-sm-4">
-				  	<h:commandButton id="btnListaUsuario" action="lista-usuario" value="Lista de Usuários" />
-				  </div>
-				  <div class="col-sm-4">.col-sm-4</div>
-				  <div class="col-sm-4">.col-sm-4</div>
-			</div>
+			<h:form id="frm" method="post">
+				 <div class="page-header">
+				  <h1>Menu Principal</h1>
+				</div>
+				 <div class="row">
+					  <div class="col-sm-4">
+					  	<h:commandLink action="lista-usuario"><h:graphicImage library="img" name="icone-usuario.png" alt="Usuários" width="150" /></h:commandLink>				  	
+					  </div>
+				</div>
+			</h:form>
 		</div>
 	</h:body>
 </html>

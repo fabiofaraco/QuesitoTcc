@@ -4,17 +4,26 @@
 	   xmlns:f="http://java.sun.com/jsf/core">
 	   
 <h:head>
-  <title>Cadastro de Usuários</title>
+	<style>
+		.cabecalho {
+			background-color:#b30000;
+			color:white;
+		}
+	</style>
+  <title>Lista de Usuários</title>
   <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 </h:head>
 <h:body>
-	<div class="container">
+	<div id="divTabela" style="margin:1%">
 		<h:form id="frm" method="post">
+			<div class="page-header">
+			  <h1>Usuários</h1>
+			</div>
 			<h:messages showDetail="true"/>
-			<h:commandButton  value="Novo" action="cadastro-usuario" class="btn btn-default"/>
-		
+			<h:commandButton  value="Inserir Usuário" action="cadastro-usuario" class="btn btn-default btn-lg" style="margin-bottom:20px"/>
+			<br/>
 			 <div class="table-responsive">
-			  	<h:dataTable id="tabelaUsuarios" value="#{usuarioBean.usuarios}" var="usuario" class="table">
+			  	<h:dataTable id="tabelaUsuarios" value="#{usuarioBean.usuarios}" var="usuario" class="table table-hover" headerClass="cabecalho" >
 			    	<h:column>
 				    	<f:facet name="header">
 				      		<h:outputText  value="Nome"/>
@@ -43,7 +52,7 @@
 				     	<h:outputText value="#{usuario.email}"/>
 				  	</h:column>
 				  	
-				  	<h:column>
+				  	<h:column class="botoesTabela" >
 				    	<f:facet name="header">
 				      		<h:outputText  value=""/>
 				    	</f:facet>
