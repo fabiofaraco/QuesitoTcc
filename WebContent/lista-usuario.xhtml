@@ -9,6 +9,11 @@
 			background-color:#b30000;
 			color:white;
 		}
+		
+		#opcoes {
+			margin-top:38px;
+			text-align:left;
+		}
 	</style>
   <title>Lista de Usuários</title>
   <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -17,7 +22,15 @@
 	<div id="divTabela" style="margin:1%">
 		<h:form id="frm" method="post">
 			<div class="page-header">
-			  <h1>Usuários</h1>
+				<div class="row">
+				  <div class="col-sm-11">
+				  	<h1>Usuários</h1>
+				  </div>
+				  <div id="opcoes" class="col-sm-1" >
+					  <h:commandLink value="Voltar" action="menu" class="col-sm-7" />
+					  <h:commandLink id="opcaoSair" value="Sair" class="col-sm-5" />
+				  </div>
+				</div>
 			</div>
 			<h:messages showDetail="true"/>
 			<h:commandButton  value="Inserir Usuário" action="cadastro-usuario" class="btn btn-default btn-lg" style="margin-bottom:20px"/>
@@ -52,7 +65,7 @@
 				     	<h:outputText value="#{usuario.email}"/>
 				  	</h:column>
 				  	
-				  	<h:column class="botoesTabela" >
+				  	<h:column>
 				    	<f:facet name="header">
 				      		<h:outputText  value=""/>
 				    	</f:facet>

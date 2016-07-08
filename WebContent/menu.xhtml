@@ -4,19 +4,45 @@
 	   xmlns:f="http://java.sun.com/jsf/core">
 	   
   <h:head>
-    <title>Login</title> 
+  	<style>
+  		
+		#opcoes {
+			margin-top:38px;
+		}
+  	</style>
+  
+    <title>Menu Principal</title> 
     <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
   </h:head>
 
 	<h:body>
-		<div class="container">
+		<div id="divMenu" style="margin:2%">
 			<h:form id="frm" method="post">
 				 <div class="page-header">
-				  <h1>Menu Principal</h1>
+					<div class="row">
+					  <div class="col-sm-11">
+					  	<h1>Menu Principal</h1>
+					  </div>
+					  <div id="opcoes" class="col-sm-1" >
+						  <h:commandLink id="opcaoSair" value="Sair" action="login" class="col-sm-5" />
+					  </div>
+					</div>
 				</div>
-				 <div class="row">
-					  <div class="col-sm-4">
-					  	<h:commandLink action="lista-usuario"><h:graphicImage library="img" name="icone-usuario.png" alt="Usuários" width="150" /></h:commandLink>				  	
+				 <div class="row" style="text-align:center">
+					  <div class="col-sm-3">
+					  	<h:commandLink action="lista-usuario"><h:graphicImage library="img" name="firefighter.png" alt="Usuários" width="150" /></h:commandLink>				  	
+					  </div>
+					  
+					  <div class="col-sm-3">
+					  	<h:commandLink action="lista-usuario"><h:graphicImage library="img" name="requerente.png" alt="Requerentes" width="150" /></h:commandLink>				  	
+					  </div>
+					  
+					  <div class="col-sm-3">
+					  	<h:commandLink action="lista-usuario"><h:graphicImage library="img" name="quesito.png" alt="Quesito" width="136" /></h:commandLink>				  	
+					  </div>
+					  
+					  <div class="col-sm-3">
+					  	<h:commandLink action="lista-usuario"><h:graphicImage library="img" name="protocolo.png" alt="Protocolo" width="136" /></h:commandLink>				  	
 					  </div>
 				</div>
 			</h:form>
