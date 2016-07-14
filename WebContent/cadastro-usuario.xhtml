@@ -4,44 +4,61 @@
 	   xmlns:f="http://java.sun.com/jsf/core">
 	   
 <h:head>
+  <style>
+  	#opcoes {
+			margin-top:38px;
+			text-align:left;
+		}
+  </style>
   <title>Cadastro de Usuários</title>
   <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  
+  <script>
+  
+  </script>
 </h:head>
 <h:body>
-	<div class="well" style="background-color: #bccad6">
-		<div class="page-header col-sm-offset-2 col-sm-8" >
-	    	<h2 class="">Cadastro de Usuários</h2>      
-	  	</div>	
 		<div class="container">
 			<h:form id="frm" class="form-horizontal" method="post">
+				<div class="page-header">
+					<div class="row">
+					  <div class="col-sm-10">
+					  	<h1>Usuários</h1>
+					  </div>
+					  <div id="opcoes" class="col-sm-2" >
+						  <h:commandLink value="Voltar" action="lista-usuario" class="col-sm-6" immediate="true"/>
+						  <h:commandLink id="opcaoSair" value="Sair" class="col-sm-6" immediate="true"/>
+					  </div>
+					</div>
+				</div>
 				<h:messages />
 				<div class="form-group">
-					<h:outputLabel for="nome" class="control-label col-sm-2" value="Nome" style="text-align:right;"/>
-					<div class="col-sm-8">
+					<h:outputLabel for="nome" class="control-label col-sm-1" value="Nome"/>
+					<div class="col-sm-5">
 						  	<h:inputText class="form-control" id="nome" value="#{usuarioBean.usuario.nome}" 
 						  												required="true" requiredMessage="Campo Obrigatório: nome"/>
 					</div>	
 				</div>
 				
 				<div class="form-group">
-					<h:outputLabel for="rg" class="control-label col-sm-2" value="RG" style="text-align:right;"/>
-					<div class="col-sm-8">
+					<h:outputLabel for="rg" class="control-label col-sm-1" value="RG"/>
+					<div class="col-sm-3">
 						  	<h:inputText class="form-control" id="rg" value="#{usuarioBean.usuario.rg}" 
 						  												required="true" requiredMessage="Campo Obrigatório: RG"/>
 					</div>	
 				</div>
 				
 				<div class="form-group">
-					<h:outputLabel for="cpf" class="control-label col-sm-2" value="CPF" style="text-align:right;"/>
-					<div class="col-sm-8">
+					<h:outputLabel for="cpf" class="control-label col-sm-1" value="CPF"/>
+					<div class="col-sm-3">
 						  	<h:inputText class="form-control" id="cpf" value="#{usuarioBean.usuario.cpf}" 
 						  												required="true" requiredMessage="Campo Obrigatório: CPF"/>
 					</div>	
 				</div>
 				
 				<div class="form-group">
-					<h:outputLabel class="control-label col-sm-2"  value="Perfil" for="perfil"/>
-					<div class="col-sm-8">
+					<h:outputLabel class="control-label col-sm-1"  value="Perfil" for="perfil"/>
+					<div class="col-sm-5">
 						<h:selectOneMenu class="form-control" id="perfil" value = "#{usuarioBean.usuario.perfil.id}">
 							 <f:selectItem itemLabel ="Selecione..." noSelectionOption ="true" />
 							 <f:selectItems
@@ -54,35 +71,33 @@
 				</div>
 				
 				<div class="form-group">
-					<h:outputLabel for="email" class="control-label col-sm-2" value="Email" style="text-align:right;"/>
-					<div class="col-sm-8">
+					<h:outputLabel for="email" class="control-label col-sm-1" value="Email"/>
+					<div class="col-sm-5">
 						  	<h:inputText class="form-control" id="email" value="#{usuarioBean.usuario.email}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Email"/>
 					</div>	
 				</div>
 				
 				<div class="form-group">
-					<h:outputLabel for="senha" class="control-label col-sm-2" value="Senha" style="text-align:right;"/>
-					<div class="col-sm-8">
+					<h:outputLabel for="senha" class="control-label col-sm-1" value="Senha"/>
+					<div class="col-sm-3">
 						  	<h:inputText class="form-control" id="senha" value="#{usuarioBean.usuario.senha}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Senha"/>
 					</div>	
 				</div>
 				
 				<div class="form-group">
-					<h:outputLabel for="confirmaSenha" class="control-label col-sm-2" value="Confirma Senha" style="text-align:right;"/>
-					<div class="col-sm-8">
+					<h:outputLabel for="confirmaSenha" class="control-label col-sm-1" value="Confirma Senha"/>
+					<div class="col-sm-3">
 						  	<h:inputText class="form-control" id="confirmaSenha" value="#{usuarioBean.usuario.confirmaSenha}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Confirma Senha"/>
 					</div>	
 				</div>
 				
 				<h:inputHidden id="id" value="#{usuarioBean.usuario.id}" />	
-				<h:commandButton id="btnSalvar" value="Salvar" class="btn btn-success col-sm-offset-8 col-sm-2" action="#{usuarioBean.salvar}"/>
+				<h:commandButton id="btnSalvar" value="Salvar" class="btn btn-success btn-lg col-sm-offset-1 col-sm-1" action="#{usuarioBean.salvar}"/>
 				
 			</h:form>
 		</div>
-	</div>
-	
 </h:body>
 </html>
