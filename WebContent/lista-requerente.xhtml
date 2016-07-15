@@ -1,10 +1,93 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core">
+	   
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style>
+		.cabecalho {
+			background-color:#b30000;
+			color:white;
+		}
+		
+		#opcoes {
+			margin-top:38px;
+			text-align:left;
+		}
+	</style>
+  <title>Lista de Usuários</title>
+  <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+	<div class="container-fluid">
+		<h:form id="frm" method="post">
+			<div class="page-header">
+				<div class="row">
+				  <div class="col-sm-11">
+				  	<h1>Lista de Requerente</h1>
+				  </div>
+				  <div id="opcoes" class="col-sm-1" >
+					  <h:commandLink value="Voltar" action="menu" class="col-sm-7" />
+					  <h:commandLink id="opcaoSair" value="Sair" class="col-sm-5" />
+				  </div>
+				</div>
+			</div>
+			<h:messages showDetail="true"/>
+			<h:commandButton  value="Inserir Requerente" action="cadastro-requerente" class="btn btn-default btn-lg" style="margin-bottom:20px"/>
+			<br/>
+			<div class="row col-sm-12">
+				<div class="table-responsive">
+				  	<h:dataTable id="tabelaRequerente" value="#{requerenteBean.requerentes}" var="requerente" class="table table-hover" headerClass="cabecalho" >
+				    	<h:column>
+					    	<f:facet name="header">
+					      		<h:outputText  value="Nome"/>
+					    	</f:facet>
+					     	<h:outputText value="#{requerente.nome}"/>
+					  	</h:column>
+					  	
+					  	<h:column>
+					    	<f:facet name="header">
+					      		<h:outputText  value="RG"/>
+					    	</f:facet>
+					     	<h:outputText value="#{requerente.rg}"/>
+					  	</h:column>
+					  	
+					  	<h:column>
+					    	<f:facet name="header">
+					      		<h:outputText  value="CPF"/>
+					    	</f:facet>
+					     	<h:outputText value="#{requerente.cpf}"/>
+					  	</h:column>
+					  	
+					  	<h:column>
+					    	<f:facet name="header">
+					      		<h:outputText  value="Email"/>
+					    	</f:facet>
+					     	<h:outputText value="#{requerente.email}"/>
+					  	</h:column>
+					  	
+					  	<h:column>
+					    	<f:facet name="header">
+					      		<h:outputText  value=""/>
+					    	</f:facet>
+							  <h:commandButton class="btn btn-primary" value="Alterar" action="#{requerenteBean.carregarAlteracao}">
+							  	<f:param name="id" value="#{requerente.id}"></f:param>
+							  </h:commandButton>
+					  	</h:column>
+					  	
+					  	<h:column>
+					    	<f:facet name="header">
+					      		<h:outputText  value=""/>
+					    	</f:facet>
+							  <h:commandButton class="btn btn-danger" value="Excluir" actionListener="#{requerenteBean.remover}" render="@all">
+							  	<f:param name="id" value="#{requerente.id}"></f:param>
+							  </h:commandButton>
+					  	</h:column>
+				    </h:dataTable>
+				</div>
+			</div> 
+		</h:form>
+	</div>
+</h:body>
 </html>
