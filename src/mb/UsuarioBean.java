@@ -6,14 +6,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import comum.ManagedBeanPadrao;
-
+import util.FacesUtil;
 import bean.Perfil;
 import bean.Usuario;
 import dao.UsuarioDao;
 
 @ManagedBean
-public class UsuarioBean extends ManagedBeanPadrao {
+public class UsuarioBean extends GenericoBean {
 	private UsuarioDao dao = new UsuarioDao();
 	private Usuario usuario = new Usuario();
 	private List<Usuario> usuarios;
@@ -27,18 +26,13 @@ public class UsuarioBean extends ManagedBeanPadrao {
 			if(usuario.getId() == 0) {
 				dao.incluir(usuario);
 				usuario = new Usuario();
-				
-				FacesContext.getCurrentInstance()
-	 				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operação Realizada!", "Usuário inserido com sucesso!"));
+				FacesUtil.addMessageInfo("Operação Realizada!", "Usuário inserido com sucesso!");
 			} else {
 				dao.alterar(usuario);
-				
-				FacesContext.getCurrentInstance()
-	 				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operação Realizada!", "Usuário alterado com sucesso!"));
+				FacesUtil.addMessageInfo("Operação Realizada!", "Usuário alterado com sucesso!");
 			}
 		} catch(Exception e) {
-			 FacesContext.getCurrentInstance()
-	 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "Erro no Login!"));
+			FacesUtil.addMessageInfo("Operação Não Realizada!", "Um Erro Inesperado Ocorreu!");
 		}
 		return "lista-usuario";
 	}
@@ -46,10 +40,8 @@ public class UsuarioBean extends ManagedBeanPadrao {
 	
 	public void remover() {
 		try{
-			dao.remover(getParameterInt("id"));
-			
-			FacesContext.getCurrentInstance()
-				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Operação realizada!", "Usuário Removido com sucesso!"));
+			dao.remover(FacesUtil.getParameterInt("id"), Usuario.class);
+			FacesUtil.addMessageInfo("Operação Realizada!", "Usuário removido com sucesso!");
 		} catch(Exception e) {
 			FacesContext.getCurrentInstance()
  				.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Operação não realizada!", "Não foi possível excluir o usuário selecionado!"));
@@ -59,11 +51,7 @@ public class UsuarioBean extends ManagedBeanPadrao {
 //	---------------------------------------------------------------------------------------------------
 	
 	public String carregarAlteracao() {
-		int id = getParameterInt("id");
-		
-		usuario = dao.buscar(id);
-		usuario.setId(id);
-		
+		usuario = dao.buscarUsuario(FacesUtil.getParameterInt("id"));
 		return "cadastro-usuario";
 	}
 	

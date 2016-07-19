@@ -1,0 +1,22 @@
+#opcoes {
+	margin-top:30px;
+	text-align:left;
+	font-size:17px;
+}
+
+.cabecalho {
+	background-color:#b30000;
+	color:white;
+}
+
+#corpo {
+	margin: 15px;
+}
+
+.btnAlterar {
+	width: 20px;
+}
+
+.btnExcluir {
+	width: 20px;
+}

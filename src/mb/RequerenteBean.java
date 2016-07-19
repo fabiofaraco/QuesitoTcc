@@ -4,14 +4,12 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
+import util.FacesUtil;
 import bean.Requerente;
-
-import comum.ManagedBeanPadrao;
-
 import dao.RequerenteDao;
 
 @ManagedBean
-public class RequerenteBean extends ManagedBeanPadrao {
+public class RequerenteBean extends GenericoBean {
 	private RequerenteDao dao = new RequerenteDao();
 	private Requerente requerente = new Requerente();
 	private List<Requerente> requerentes;
@@ -21,13 +19,13 @@ public class RequerenteBean extends ManagedBeanPadrao {
 			if(requerente.getId() == 0) {
 				dao.incluir(requerente);
 				requerente = new Requerente();
-				addMessageInfo("Operação Realizada!", "Requerente inserido com sucesso");
+				FacesUtil.addMessageInfo("Operação Realizada!", "Requerente inserido com sucesso");
 			} else {
 				dao.alterar(requerente);
-				addMessageInfo("Operação Realizada!", "Requerente alterado com sucesso");
+				FacesUtil.addMessageInfo("Operação Realizada!", "Requerente alterado com sucesso");
 			}
 		} catch(Exception e) {
-			addMessageError("Operação Não Realizada!", "Ocorreu um Erro Inesperado");
+			FacesUtil.addMessageError("Operação Não Realizada!", "Ocorreu um Erro Inesperado");
 		}
 		return "lista-requerente";
 	}
@@ -36,21 +34,17 @@ public class RequerenteBean extends ManagedBeanPadrao {
 	
 	public void remover() {
 		try{
-			dao.remover(getParameterInt("id"));
-			addMessageInfo("Operação Realizada!", "Requerente removido com sucesso");
+			dao.remover(FacesUtil.getParameterInt("id"), Requerente.class);
+			FacesUtil.addMessageInfo("Operação Realizada!", "Requerente removido com sucesso");
 		} catch(Exception e) {
-			addMessageError("Operação Não Realizada!", "Ocorreu um Erro Inesperado");
+			FacesUtil.addMessageError("Operação Não Realizada!", "Ocorreu um Erro Inesperado");
 		}
 	}
 	
 //	---------------------------------------------------------------------------------------------------
 	
 	public String carregarAlteracao() {
-		int id = getParameterInt("id");
-		
-		requerente = dao.buscar(id);
-		requerente.setId(id);
-		
+		requerente = dao.buscarRequerente(FacesUtil.getParameterInt("id"));
 		return "cadastro-requerente";
 	}
 	
@@ -67,7 +61,7 @@ public class RequerenteBean extends ManagedBeanPadrao {
 		return requerente;
 	}
 	
-	public void setUsuario(Requerente requerente) {
+	public void setQuesito(Requerente requerente) {
 		this.requerente = requerente;
 	}
 }

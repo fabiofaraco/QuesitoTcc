@@ -4,25 +4,19 @@
 	   xmlns:f="http://java.sun.com/jsf/core">
 	   
   <h:head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1" />
-  	<style>
-  		
-		#opcoes {
-			margin-top:38px;
-		}
-  	</style>
-  
-    <title>Menu Principal</title> 
-    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	  	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	  	<title>Menu Principal</title> 
+	    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="resources/css/styles.css" rel="stylesheet"/>
   </h:head>
 
-	<h:body>
+	<h:body id="corpo">
 		<div id="divMenu" style="margin:2%">
 			<h:form id="frm" method="post">
 				 <div class="page-header">
 					<div class="row">
 					  <div class="col-sm-11">
-					  	<h1>Menu Principal</h1>
+					  	<h2 class="col-sm-12">Menu Principal</h2>
 					  </div>
 					  <div id="opcoes" class="col-sm-1" >
 						  <h:commandLink id="opcaoSair" value="Sair" action="login" class="col-sm-5" />
