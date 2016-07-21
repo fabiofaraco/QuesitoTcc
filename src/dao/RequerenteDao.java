@@ -1,19 +1,10 @@
 package dao;
 
-import java.util.List;
-
 import bean.Requerente;
 
-public class RequerenteDao extends GenericoDao {
+public class RequerenteDao extends GenericDao<Requerente> {
 
-	@SuppressWarnings("unchecked")
-	public List<Requerente> getListaRequerentes() {
-		return (List<Requerente>)(Object)this.getLista("select r from Requerente r");
+	public RequerenteDao(Class<Requerente> persistentClass) {
+		super(persistentClass);
 	}	
-
-//	------------------------------------------------------------------------------------------------------
-	
-	public Requerente buscarRequerente(int id) {
-		return (Requerente) buscar(id, Requerente.class);
-	}
 }

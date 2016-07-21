@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,14 +8,21 @@ import javax.persistence.Query;
 
 import util.PersistenceUtil;
 
-public abstract class GenericoDao {
+public class GenericDao<T> implements Dao<T> {
+
+	private Class<T> persistentClass; 
 	
-	public void incluir(Object objeto) {
+	public GenericDao(Class<T> persistentClass) {
+		this.persistentClass = persistentClass;
+	}
+	
+	@Override
+	public void incluir(T t) {
 		EntityManager manager = PersistenceUtil.getEntityManager();
 		
 		try {
 			manager.getTransaction().begin();
-			manager.persist(objeto);
+			manager.persist(t);
 			manager.getTransaction().commit();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -22,16 +30,16 @@ public abstract class GenericoDao {
 		} finally {
 			manager.close();
 		}
+		
 	}
-	
-//	--------------------------------------------------------------------------------------------------------------	
-	
-	public void alterar(Object objeto) {
+
+	@Override
+	public void alterar(T t) {
 		EntityManager manager = PersistenceUtil.getEntityManager();
 		
 		try {
 			manager.getTransaction().begin();
-			manager.merge(objeto);
+			manager.merge(t);
 			manager.getTransaction().commit();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -39,17 +47,17 @@ public abstract class GenericoDao {
 		} finally {
 			manager.close();
 		}
+		
 	}
-	
-//	--------------------------------------------------------------------------------------------------------------
-	
-	public void remover(int id, Class<?> classe) {
+
+	@Override
+	public void remover(Serializable id) {
 		EntityManager manager = PersistenceUtil.getEntityManager();
-		Object objeto = manager.find(classe, id);
+		T t = manager.find(persistentClass, id);
 		
 		try {
 			manager.getTransaction().begin();
-			manager.remove(objeto);
+			manager.remove(t);
 			manager.getTransaction().commit();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -57,29 +65,29 @@ public abstract class GenericoDao {
 		} finally {
 			manager.close();
 		}
+		
 	}
-	
-//	--------------------------------------------------------------------------------------------------------------
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Object> getLista(String hql) {
+	@Override
+	public List<T> getLista(String q) {
 		EntityManager manager = PersistenceUtil.getEntityManager();
 		try{
-			Query query = manager.createQuery(hql);
+			Query query = manager.createQuery(q);
 			return query.getResultList();
 		} finally {
 			manager.close();
 		}
 	}
 
-//	--------------------------------------------------------------------------------------------------------------
-	
-	public Object buscar(int id, Class<?> classe) {
+	@Override
+	public T buscar(Serializable id) {
 		EntityManager manager = PersistenceUtil.getEntityManager();
 		try{
-			return manager.find(classe, id);
+			return manager.find(persistentClass, id);
 		} finally {
 			manager.close();
 		}
 	}
+
 }

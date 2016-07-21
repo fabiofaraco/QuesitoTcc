@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Usuario;
 import dao.UsuarioDao;
+import dao.UsuarioHibernateDao;
 
 @ManagedBean
 public class LoginBean {
@@ -17,14 +18,14 @@ public class LoginBean {
 	private Usuario usuario = new Usuario();
 	
 	public String logar() {
-		UsuarioDao dao = new UsuarioDao();
+		UsuarioHibernateDao dao = new UsuarioDao(Usuario.class);
 		
 		if(usuario.getEmail().equals("admin") && 
 				usuario.getSenha().equals("admin")) {
 			return "menu";
 		}
 		
-		usuario = dao.buscarUsuarioLogin(this.usuario.getEmail(), this.usuario.getSenha());
+		usuario = dao.realizaLogin(this.usuario.getEmail(), this.usuario.getSenha());
 		if(usuario == null) {
 			 FacesContext.getCurrentInstance()
 			 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "Erro no Login!"));

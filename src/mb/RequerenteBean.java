@@ -6,15 +6,17 @@ import javax.faces.bean.ManagedBean;
 
 import util.FacesUtil;
 import bean.Requerente;
-import dao.RequerenteDao;
+import dao.Dao;
+import dao.GenericDao;
 
 @ManagedBean
-public class RequerenteBean extends GenericoBean {
-	private RequerenteDao dao = new RequerenteDao();
+public class RequerenteBean {
 	private Requerente requerente = new Requerente();
 	private List<Requerente> requerentes;
 	
 	public String salvar() {
+		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
+		
 		try{
 			if(requerente.getId() == 0) {
 				dao.incluir(requerente);
@@ -33,8 +35,10 @@ public class RequerenteBean extends GenericoBean {
 //	---------------------------------------------------------------------------------------------------
 	
 	public void remover() {
+		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
+		
 		try{
-			dao.remover(FacesUtil.getParameterInt("id"), Requerente.class);
+			dao.remover(FacesUtil.getParameterInt("id"));
 			FacesUtil.addMessageInfo("Operação Realizada!", "Requerente removido com sucesso");
 		} catch(Exception e) {
 			FacesUtil.addMessageError("Operação Não Realizada!", "Ocorreu um Erro Inesperado");
@@ -44,14 +48,18 @@ public class RequerenteBean extends GenericoBean {
 //	---------------------------------------------------------------------------------------------------
 	
 	public String carregarAlteracao() {
-		requerente = dao.buscarRequerente(FacesUtil.getParameterInt("id"));
+		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
+		
+		requerente = dao.buscar(FacesUtil.getParameterInt("id"));
 		return "cadastro-requerente";
 	}
 	
 //	---------------------------------------------------------------------------------------------------
 	
 	public List<Requerente> getRequerentes() {
-		requerentes = dao.getListaRequerentes();
+		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
+		
+		requerentes = dao.getLista("select r from Requerente r");
 		return requerentes;
 	}
 	

@@ -6,15 +6,18 @@ import javax.faces.bean.ManagedBean;
 
 import util.FacesUtil;
 import bean.Quesito;
-import dao.QuesitoDao;
+import dao.Dao;
+import dao.GenericDao;
 
 @ManagedBean
-public class QuesitoBean extends GenericoBean {
-	private QuesitoDao dao = new QuesitoDao();
+public class QuesitoBean {
+	
 	private Quesito quesito = new Quesito();
 	private List<Quesito> quesitos;
 	
 	public String salvar() {
+		Dao<Quesito> dao = new GenericDao<Quesito>(Quesito.class);
+		
 		try{
 			if(quesito.getId() == 0) {
 				dao.incluir(quesito);
@@ -33,8 +36,10 @@ public class QuesitoBean extends GenericoBean {
 //	---------------------------------------------------------------------------------------------------
 	
 	public void remover() {
+		Dao<Quesito> dao = new GenericDao<Quesito>(Quesito.class);
+		
 		try{
-			dao.remover(FacesUtil.getParameterInt("id"), Quesito.class);
+			dao.remover(FacesUtil.getParameterInt("id"));
 			FacesUtil.addMessageInfo("Operação Realizada!", "Quesito removido com sucesso");
 		} catch(Exception e) {
 			FacesUtil.addMessageError("Operação Não Realizada!", "Ocorreu um Erro Inesperado");
@@ -44,14 +49,18 @@ public class QuesitoBean extends GenericoBean {
 //	---------------------------------------------------------------------------------------------------
 	
 	public String carregarAlteracao() {
-		quesito= dao.buscarQuesito(FacesUtil.getParameterInt("id"));
+		Dao<Quesito> dao = new GenericDao<Quesito>(Quesito.class);
+		
+		quesito= dao.buscar(FacesUtil.getParameterInt("id"));
 		return "cadastro-quesito";
 	}
 	
 //	---------------------------------------------------------------------------------------------------
 	
 	public List<Quesito> getQuesitos() {
-		quesitos = dao.getListaQuesitos();
+		Dao<Quesito> dao = new GenericDao<Quesito>(Quesito.class);
+		
+		quesitos = dao.getLista("select q from Quesito q");
 		return quesitos;
 	}
 	

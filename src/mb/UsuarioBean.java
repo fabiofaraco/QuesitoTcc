@@ -9,11 +9,11 @@ import javax.faces.context.FacesContext;
 import util.FacesUtil;
 import bean.Perfil;
 import bean.Usuario;
-import dao.UsuarioDao;
+import dao.Dao;
+import dao.GenericDao;
 
 @ManagedBean
-public class UsuarioBean extends GenericoBean {
-	private UsuarioDao dao = new UsuarioDao();
+public class UsuarioBean {
 	private Usuario usuario = new Usuario();
 	private List<Usuario> usuarios;
 	private List<Perfil> perfis;
@@ -23,6 +23,8 @@ public class UsuarioBean extends GenericoBean {
 	
 	public String salvar() {
 		try{
+			Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
+			
 			if(usuario.getId() == 0) {
 				dao.incluir(usuario);
 				usuario = new Usuario();
@@ -40,7 +42,9 @@ public class UsuarioBean extends GenericoBean {
 	
 	public void remover() {
 		try{
-			dao.remover(FacesUtil.getParameterInt("id"), Usuario.class);
+			Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
+			
+			dao.remover(FacesUtil.getParameterInt("id"));
 			FacesUtil.addMessageInfo("Operação Realizada!", "Usuário removido com sucesso!");
 		} catch(Exception e) {
 			FacesContext.getCurrentInstance()
@@ -51,21 +55,27 @@ public class UsuarioBean extends GenericoBean {
 //	---------------------------------------------------------------------------------------------------
 	
 	public String carregarAlteracao() {
-		usuario = dao.buscarUsuario(FacesUtil.getParameterInt("id"));
+		Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
+		
+		usuario = dao.buscar(FacesUtil.getParameterInt("id"));
 		return "cadastro-usuario";
 	}
 	
 //	---------------------------------------------------------------------------------------------------	
 	
 	public List<Perfil> getPerfis() {
-		perfis = dao.getListaPerfis();
+		Dao<Perfil> dao = new GenericDao<Perfil>(Perfil.class);
+		
+		perfis = dao.getLista("select p from Perfil p");
 		return perfis;
 	}
 	
 //	---------------------------------------------------------------------------------------------------	
 	
 	public List<Usuario> getUsuarios() {
-		usuarios = dao.getListaUsuarios();
+		Dao<Usuario> dao = new GenericDao<Usuario>(Usuario.class);
+		
+		usuarios = dao.getLista("select u from Usuario u");
 		return usuarios;
 	}
 
