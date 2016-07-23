@@ -13,18 +13,18 @@ import dao.GenericDao;
 @ManagedBean
 public class EventoBean {
 	
-	private Evento quesito = new Evento();
+	private Evento evento = new Evento();
 	private List<Evento> quesitos;
 	
 	public String salvar() {
 		Dao<Evento> dao = new GenericDao<Evento>(Evento.class);
 		try{
-			if(quesito.getId() == 0) {
-				dao.incluir(quesito);
-				quesito = new Evento();
+			if(evento.getId() == 0) {
+				dao.incluir(evento);
+				evento = new Evento();
 				FacesUtil.addMessageInfo(FacesUtil.getMessage("MSG_EVENTO_INSERIDO"));
 			} else {
-				dao.alterar(quesito);
+				dao.alterar(evento);
 				FacesUtil.addMessageInfo(FacesUtil.getMessage("MSG_EVENTO_ALTERADO"));
 			}
 		} catch(Exception e) {
@@ -49,7 +49,7 @@ public class EventoBean {
 	
 	public String carregarAlteracao() {
 		Dao<Evento> dao = new GenericDao<Evento>(Evento.class);
-		quesito= dao.buscar(FacesUtil.getParameterInt("id"));
+		evento= dao.buscar(FacesUtil.getParameterInt("id"));
 		return "cadastro-quesito";
 	}
 	
@@ -64,11 +64,11 @@ public class EventoBean {
 //	---------------------------------------------------------------------------------------------------
 	
 	public Evento getQuesito() {
-		return quesito;
+		return evento;
 	}
 	
 	public void setQuesito(Evento quesito) {
-		this.quesito = quesito;
+		this.evento = quesito;
 	}
 
 }
