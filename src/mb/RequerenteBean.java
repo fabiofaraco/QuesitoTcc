@@ -1,12 +1,13 @@
 package mb;
 
+import interfaces.Dao;
+
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
 import util.FacesUtil;
 import bean.Requerente;
-import dao.Dao;
 import dao.GenericDao;
 
 @ManagedBean

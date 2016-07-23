@@ -1,5 +1,7 @@
 package mb;
 
+import interfaces.Dao;
+
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -9,7 +11,6 @@ import javax.faces.context.FacesContext;
 import util.FacesUtil;
 import bean.Perfil;
 import bean.Usuario;
-import dao.Dao;
 import dao.GenericDao;
 
 @ManagedBean

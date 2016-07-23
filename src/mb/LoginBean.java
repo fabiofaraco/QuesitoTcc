@@ -1,5 +1,7 @@
 package mb;
 
+import interfaces.UsuarioHibernateDao;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import bean.Usuario;
 import dao.UsuarioDao;
-import dao.UsuarioHibernateDao;
 
 @ManagedBean
 public class LoginBean {
