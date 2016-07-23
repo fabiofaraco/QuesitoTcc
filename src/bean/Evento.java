@@ -1,6 +1,6 @@
 package bean;
 
-public class Quesito {
+public class Evento {
 	private int id;
 
 	public int getId() {

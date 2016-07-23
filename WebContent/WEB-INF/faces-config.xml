@@ -6,6 +6,15 @@
 			  version =" 2.2">
 			
 			<application>
-			  
+			  	<resource-bundle>  
+				    <base-name>messages.messages</base-name>  
+				    <var>msgs</var>  
+			 	</resource-bundle>  
+				 <locale-config>  
+				        <default-locale>pt_BR</default-locale>  
+				 </locale-config>  
+				 <message-bundle>  
+				      	messages.messages  
+				 </message-bundle>  
 			</application>
 </faces-config>			 		

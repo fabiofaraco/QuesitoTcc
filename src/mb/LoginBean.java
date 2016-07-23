@@ -2,14 +2,12 @@ package mb;
 
 import interfaces.UsuarioHibernateDao;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import util.FacesUtil;
 import bean.Usuario;
 import dao.UsuarioDao;
 
@@ -19,7 +17,7 @@ public class LoginBean {
 	private Usuario usuario = new Usuario();
 	
 	public String logar() {
-		UsuarioHibernateDao dao = new UsuarioDao(Usuario.class);
+		UsuarioHibernateDao dao = new UsuarioDao();
 		
 		if(usuario.getEmail().equals("admin") && 
 				usuario.getSenha().equals("admin")) {
@@ -28,9 +26,7 @@ public class LoginBean {
 		
 		usuario = dao.realizaLogin(this.usuario.getEmail(), this.usuario.getSenha());
 		if(usuario == null) {
-			 FacesContext.getCurrentInstance()
-			 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "Erro no Login!"));
-			
+			 FacesUtil.addMessageWarn(FacesUtil.getMessage("MSG_USUARIO_NAO_ENCONTRADO"), "");			
 			return null;
 		} else {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -48,13 +44,5 @@ public class LoginBean {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-	
-	public EntityManager getManager () {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		ExternalContext ec = fc.getExternalContext();
-		HttpServletRequest request = (HttpServletRequest)ec.getRequest();
-		return (EntityManager)request.getAttribute("EntityManager");
-	}
-	
+	}	
 }

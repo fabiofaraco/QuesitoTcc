@@ -11,8 +11,8 @@ import bean.Usuario;
 
 public class UsuarioDao extends GenericDao<Usuario> implements UsuarioHibernateDao {
 		
-	public UsuarioDao(Class<Usuario> persistentClass) {
-		super(persistentClass);	
+	public UsuarioDao() {
+		super(Usuario.class);	
 	}
 
 	@Override

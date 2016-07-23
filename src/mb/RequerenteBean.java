@@ -17,18 +17,17 @@ public class RequerenteBean {
 	
 	public String salvar() {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
-		
 		try{
 			if(requerente.getId() == 0) {
 				dao.incluir(requerente);
 				requerente = new Requerente();
-				FacesUtil.addMessageInfo("Operação Realizada!", "Requerente inserido com sucesso");
+				FacesUtil.addMessageInfo(FacesUtil.getMessage("MSG_REQUERENTE_INSERIDO"));
 			} else {
 				dao.alterar(requerente);
-				FacesUtil.addMessageInfo("Operação Realizada!", "Requerente alterado com sucesso");
+				FacesUtil.addMessageInfo(FacesUtil.getMessage("MSG_REQUERENTE_ALTERADO"));
 			}
 		} catch(Exception e) {
-			FacesUtil.addMessageError("Operação Não Realizada!", "Ocorreu um Erro Inesperado");
+			FacesUtil.addMessageError();
 		}
 		return "lista-requerente";
 	}
@@ -37,12 +36,11 @@ public class RequerenteBean {
 	
 	public void remover() {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
-		
 		try{
 			dao.remover(FacesUtil.getParameterInt("id"));
-			FacesUtil.addMessageInfo("Operação Realizada!", "Requerente removido com sucesso");
+			FacesUtil.addMessageInfo(FacesUtil.getMessage("MSG_REQUERENTE_EXCLUIDO"));
 		} catch(Exception e) {
-			FacesUtil.addMessageError("Operação Não Realizada!", "Ocorreu um Erro Inesperado");
+			FacesUtil.addMessageError();
 		}
 	}
 	
@@ -50,7 +48,6 @@ public class RequerenteBean {
 	
 	public String carregarAlteracao() {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
-		
 		requerente = dao.buscar(FacesUtil.getParameterInt("id"));
 		return "cadastro-requerente";
 	}
@@ -59,7 +56,6 @@ public class RequerenteBean {
 	
 	public List<Requerente> getRequerentes() {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
-		
 		requerentes = dao.getLista("select r from Requerente r");
 		return requerentes;
 	}
