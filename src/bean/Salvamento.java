@@ -1,11 +1,18 @@
 package bean;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+@Embeddable
 public class Salvamento {
 
+	@Column(name="houve_salvamento")
 	private String houveSalvamento;
+	
+	@Column(name="responsavel_salvamento")
 	private String porQuem;
+	
+	@Column(name="meios_utilizados_salvamento")
 	private String meiosUtilizados;
 	
 	public String getHouveSalvamento() {

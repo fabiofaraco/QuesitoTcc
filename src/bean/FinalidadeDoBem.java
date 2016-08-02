@@ -3,10 +3,15 @@ package bean;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
+@Entity
+@Table(name="finalidade_bem")
 public class FinalidadeDoBem {
 	
+	@Id
+	@GeneratedValue
 	private int id;
 	
 	private String descricao;

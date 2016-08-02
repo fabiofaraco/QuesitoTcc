@@ -8,13 +8,25 @@ import javax.faces.bean.ManagedBean;
 
 import util.FacesUtil;
 import bean.Evento;
+import bean.PrincipalEventoAtendido;
 import dao.GenericDao;
 
 @ManagedBean
 public class EventoBean {
 	
 	private Evento evento = new Evento();
-	private List<Evento> quesitos;
+	private List<Evento> eventos;
+	private List<PrincipalEventoAtendido> principaisEventos;
+	
+	public Evento getEvento() {
+		return evento;
+	}
+
+	
+	public void setEvento(Evento quesito) {
+		this.evento = quesito;
+	}
+
 	
 	public String salvar() {
 		Dao<Evento> dao = new GenericDao<Evento>(Evento.class);
@@ -33,7 +45,6 @@ public class EventoBean {
 		return "lista-quesito";
 	}
 	
-//	---------------------------------------------------------------------------------------------------
 	
 	public void remover() {
 		Dao<Evento> dao = new GenericDao<Evento>(Evento.class);
@@ -45,30 +56,25 @@ public class EventoBean {
 		}
 	}
 	
-//	---------------------------------------------------------------------------------------------------
 	
 	public String carregarAlteracao() {
 		Dao<Evento> dao = new GenericDao<Evento>(Evento.class);
 		evento= dao.buscar(FacesUtil.getParameterInt("id"));
-		return "cadastro-quesito";
+		return "cadastro-evento";
 	}
 	
-//	---------------------------------------------------------------------------------------------------
-	
-	public List<Evento> getQuesitos() {
+
+	public List<Evento> getEventos() {
 		Dao<Evento> dao = new GenericDao<Evento>(Evento.class);
-		quesitos = dao.getLista("select q from Quesito q");
-		return quesitos;
+		eventos = dao.getLista("select e from Evento e");
+		return eventos;
 	}
-	
-//	---------------------------------------------------------------------------------------------------
-	
-	public Evento getQuesito() {
-		return evento;
-	}
-	
-	public void setQuesito(Evento quesito) {
-		this.evento = quesito;
+
+
+	public List<PrincipalEventoAtendido> getPrincipaisEventos() {
+		Dao<PrincipalEventoAtendido> dao = new GenericDao<PrincipalEventoAtendido>(PrincipalEventoAtendido.class);
+		principaisEventos = dao.getLista("select p from PrincipalEventoAtendido p");
+		return principaisEventos;
 	}
 
 }

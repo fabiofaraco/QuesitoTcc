@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	   xmlns:h="http://java.sun.com/jsf/html"
-	   xmlns:f="http://java.sun.com/jsf/core">
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:b="http://bootsfaces.net/ui">
 	   
 <h:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />	
   	<title>Cadastro de Usuários</title>
-  	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
   	<link href="resources/css/styles.css" rel="stylesheet"/>
 </h:head>
 <h:body id="corpo">
-		<div class="container">
+		<b:container>
 			<h:form id="frm" class="form-horizontal" method="post">
 				<div class="page-header">
 					<div class="row">
@@ -23,97 +23,134 @@
 					  </div>
 					</div>
 				</div>
-				<h:messages />
+				
+				
+				<b:messages styleClass="msgs" redisplay="true" for="@parent" recursive="true" id="rightmessages"/>
+				
 				<div class="form-group">
 					<h:outputLabel for="nome" class="control-label col-sm-2" value="Nome"/>
 					<div class="col-sm-5">
-						  	<h:inputText class="form-control" id="nome" value="#{requerenteBean.requerente.nome}" 
+						  	<b:inputText class="form-control" id="nome" value="#{requerenteBean.requerente.nome}" 
 						  												required="true" requiredMessage="Campo Obrigatório: nome"/>
 					</div>	
+					 
 				</div>
 				
 				<div class="form-group">
-					<h:outputLabel for="rg" class="control-label col-sm-2" value="RG"/>
+						<h:outputLabel class="control-label col-sm-2" for="rg" value="RG"/>
 					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="rg" value="#{requerenteBean.requerente.rg}" 
-						  												required="true" requiredMessage="Campo Obrigatório: RG"/>
-					</div>	
+						  	<b:inputText id="rg" value="#{requerenteBean.requerente.rg}" 
+						  												required="true" requiredMessage="Campo Obrigatório: RG"/>						  												
+					</div>
+					<div class="col-sm-3">	
+						<b:message for="rg"/>
+					</div>
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="cpf" class="control-label col-sm-2" value="CPF"/>
 					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="cpf" value="#{requerenteBean.requerente.cpf}" 
+						  	<b:inputText class="form-control" id="cpf" value="#{requerenteBean.requerente.cpf}" 
 						  												required="true" requiredMessage="Campo Obrigatório: CPF"/>
 					</div>	
+					<div class="col-sm-3">	
+						<b:message for="cpf"/>
+					</div>
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="email" class="control-label col-sm-2" value="Email"/>
 					<div class="col-sm-5">
-						  	<h:inputText class="form-control" id="email" value="#{requerenteBean.requerente.email}" 
+						  	<b:inputText class="form-control" id="email" value="#{requerenteBean.requerente.email}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Email"/>
+					</div>
+					<div class="col-sm-3">	
+						<b:message for="email"/>
 					</div>	
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="profissao" class="control-label col-sm-2" value="Profissão"/>
 					<div class="col-sm-4">
-						  	<h:inputText class="form-control" id="profissao" value="#{requerenteBean.requerente.profissao}" 
+						  	<b:inputText class="form-control" id="profissao" value="#{requerenteBean.requerente.profissao}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Profissao"/>
+					</div>
+					<div class="col-sm-3">	
+						<b:message for="profissao"/>
 					</div>	
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="estadoCivil" class="control-label col-sm-2" value="Estado Civil"/>
 					<div class="col-sm-4">
-						  	<h:inputText class="form-control" id="estadoCivil" value="#{requerenteBean.requerente.estadoCivil}" 
+						  	<b:inputText class="form-control" id="estadoCivil" value="#{requerenteBean.requerente.estadoCivil}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Estado Civil"/>
 					</div>	
+					<div class="col-sm-3">	
+						<b:message for="estadoCivil"/>
+					</div>
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="email" class="control-label col-sm-2" value="Logradouro"/>
-					<div class="col-sm-7">
-						  	<h:inputText class="form-control" id="logradouro" value="#{requerenteBean.requerente.endereco.logradouro}" 
+					<div class="col-sm-6">
+						  	<b:inputText class="form-control" id="logradouro" value="#{requerenteBean.requerente.endereco.logradouro}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Logradouro"/>
 					</div>	
+					<div class="col-sm-3">	
+						<b:message for="logradouro"/>
+					</div>
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="complemento" class="control-label col-sm-2" value="Complemento"/>
 					<div class="col-sm-2">
-						  	<h:inputText class="form-control" id="complemento" value="#{requerenteBean.requerente.endereco.complemento}" 
+						  	<b:inputText class="form-control" id="complemento" value="#{requerenteBean.requerente.endereco.complemento}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Complemento"/>
 					</div>	
+					<div class="col-sm-4">	
+						<b:message for="complemento"/>
+					</div>
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="bairro" class="control-label col-sm-2" value="Bairro"/>
 					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="bairro" value="#{requerenteBean.requerente.endereco.bairro}" 
+						  	<b:inputText class="form-control" id="bairro" value="#{requerenteBean.requerente.endereco.bairro}" 
 						  												required="true" requiredMessage="Campo Obrigatório: Bairro"/>
 					</div>	
+					<div class="col-sm-3">	
+						<b:message for="bairro"/>
+					</div>
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="telResidencial" class="control-label col-sm-2" value="Telefone Residencial"/>
 					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="telResidencial" value="#{requerenteBean.requerente.telefone.telResidencial}" />
+						  	<b:inputText class="form-control" id="telResidencial" value="#{requerenteBean.requerente.telefone.telResidencial}" />
 					</div>	
+					<div class="col-sm-3">	
+						<b:message for="telResidencial"/>
+					</div>
 				</div>
 				
 				<div class="form-group">
 					<h:outputLabel for="telCelular" class="control-label col-sm-2" value="Telefone Celular"/>
 					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="telCelular" value="#{requerenteBean.requerente.telefone.telCelular}"/>
+						  	<b:inputText class="form-control" id="telCelular" value="#{requerenteBean.requerente.telefone.telCelular}"/>
 					</div>	
+					<div class="col-sm-3">	
+						<b:message for="telCelular"/>
+					</div>
 				</div>
 				
+				<div class="form-group">
+					<b:commandButton id="btnSalvar" value="Salvar" class="btn btn-success btn-lg col-sm-offset-2 col-sm-2" action="#{requerenteBean.salvar}"/>
+				</div>
 				<h:inputHidden id="id" value="#{requerenteBean.requerente.id}" />	
-				<h:commandButton id="btnSalvar" value="Salvar" class="btn btn-success btn-lg col-sm-offset-2 col-sm-2" action="#{requerenteBean.salvar}"/>
+				
 				
 			</h:form>
-		</div>
+		</b:container>
 </h:body>
 </html>

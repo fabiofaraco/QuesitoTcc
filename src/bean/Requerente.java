@@ -26,10 +26,10 @@ public class Requerente {
 	@Column(nullable=false, length=50)
 	private String profissao;
 	
-	@Column(nullable=false, length=50)
+	@Column(name="estado_civil", nullable=false, length=50)
 	private String estadoCivil;
 	
-	@Column(nullable=false)
+	@Column(name="data_nascimento", nullable=false)
 	private Calendar dataNascimento = new GregorianCalendar();
 	
 	@Column(nullable=false, length=50)

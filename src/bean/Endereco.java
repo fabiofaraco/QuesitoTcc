@@ -15,15 +15,6 @@ public class Endereco {
 	@Column(nullable=false)
 	private String bairro;
 	
-	@Column
-	private String municipio;
-	
-	public String getMunicipio() {
-		return municipio;
-	}
-	public void setMunicipio(String municipio) {
-		this.municipio = municipio;
-	}
 	public String getLogradouro() {
 		return logradouro;
 	}

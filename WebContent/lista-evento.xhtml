@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core">
+	   
+<h:head>
+	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	  <title>Lista de Eventos</title>
+	  <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	  <link href="resources/css/styles.css" rel="stylesheet"/>
+</h:head>
+<h:body id="corpo">
+	<div id="divTabela">
+		<h:form id="frm" method="post">
+			<div class="page-header">
+				<div class="row">
+				  <div class="col-sm-10">
+				  	<h2 class="col-sm-12">Lista de Eventos</h2>
+				  </div>
+				  <div id="opcoes" class="col-sm-2" >
+					  <h:commandLink value="Voltar" action="menu" class="col-sm-6" />
+					  <h:commandLink id="opcaoSair" value="Sair" class="col-sm-6" />
+				  </div>
+				</div>
+			</div>
+			<h:messages showDetail="true"/>
+			<h:commandButton  value="Inserir Evento" action="cadastro-evento" class="btn btn-default btn-lg" style="margin-bottom:20px"/>
+			<br/>
+			 <div class="table-responsive">
+			  	<h:dataTable id="tabelaEventos" value="#{eventoBean.eventos}" var="evento" class="table table-hover" headerClass="cabecalho" >
+			    	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value="Nº Evento"/>
+				    	</f:facet>
+				     	<h:outputText value="#{evento.id}"/>
+				  	</h:column>
+				  	
+				  	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value="Endereço"/>
+				    	</f:facet>
+				     	<h:outputText value="#{evento.endereco.logradouro} - #{evento.endereco.complemento} - #{evento.endereco.bairro}"/>
+				  	</h:column>
+				  	
+				  	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value=""/>
+				    	</f:facet>
+						  <h:commandButton class="btn btn-primary" value="Alterar" action="#{eventoBean.carregarAlteracao}">
+						  	<f:param name="id" value="#{evento.id}"></f:param>
+						  </h:commandButton>
+				  	</h:column>
+				  	
+				  	<h:column>
+				    	<f:facet name="header">
+				      		<h:outputText  value=""/>
+				    	</f:facet>
+						  <h:commandButton class="btn btn-danger" value="Excluir" actionListener="#{eventoBean.remover}" render="@all">
+						  	<f:param name="id" value="#{evento.id}"></f:param>
+						  </h:commandButton>
+				  	</h:column>
+			    </h:dataTable>
+			</div> 
+		</h:form>
+	</div>
+</h:body>
+</html>

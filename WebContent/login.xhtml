@@ -2,56 +2,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	   xmlns:h="http://java.sun.com/jsf/html"
 	   xmlns:f="http://java.sun.com/jsf/core"
-	   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	   xmlns:b="http://bootsfaces.net/ui">
 	   
   <h:head>
 	  	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	    <title>Login</title> 
-	    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	    <link href="resources/css/styles.css" rel="stylesheet"/>
+	    <title>Login</title>
   </h:head>
-
-	<h:body id="corpo">
-		<div class="container">
-			<div class="jumbotron col-sm-offset-3 col-sm-6">
-				<h:form class="form-horizontal" role="form">
-				  
-				  
-				  	<h:messages infoClass="info" errorClass="error" />
-				  
-				  <div class="form-group">
-					  <div class="col-sm-12">
-					  	<h:outputText class="label-control" value="Login" style="font-size:30px; color:#A9A9A9;"/>
-					  </div>
-				  </div>
-				  
-				  <div class="form-group">
-					  <div class="col-sm-12">
-					  	<h:inputText type="email" class="form-control" id="email" pt:placeholder="Enter email" value="#{loginBean.usuario.email}" 
-					  												required="true" requiredMessage="Campo Obrigatório: Email"/>
-					  </div>
-				  </div>
-				  
-				  <div class="form-group">
-					  <div class="col-sm-12">
-					  	<h:inputSecret class="form-control" id="senha" pt:placeholder="Enter password" value="#{loginBean.usuario.senha}" 
-					  												required="true" requiredMessage="Campo Obrigatório: Senha"/>
-					  </div>
-				  </div>
-				  
-				   <div class="form-group">
-					  <div class="col-sm-12">
-					  	<h:commandButton class="btn btn-success btn-block btn-lg" id="btnEntrar" action="#{loginBean.logar}" value="Entrar"/>
-					  </div>
-				  </div>
-				  
-				  <div class="form-group">
-					  <div class="col-sm-12">
-					  	<h:commandLink class="btn btn-link btn-block btn-lg" id="btnEsqueceuSenha" value="Esqueci a Senha"/>
-					  </div>
-				  </div>
+  <h:body id="corpo">
+		<b:container layout="fluid">
+			<b:jumbotron class="col-sm-offset-3 col-sm-6">
+				<h:form class="form-horizontal" role="form" style="margin:5px;">
+					<b:row>
+						<b:column >
+							<h:outputLabel value="Login" style="font-size:30px; color:#A9A9A9;"/>
+						</b:column>
+					</b:row>
+					<b:messages/>
+				    <b:row>
+				    	<b:column>
+					    	<b:inputText type="email" field-size="lg" id="email" placeholder="Enter email" value="#{loginBean.usuario.email}" 
+						  												required="true" requiredMessage="Campo Obrigatório: Email"/>
+					  	</b:column>
+				    </b:row>
+				    <b:row>
+				    	<b:column>
+				    		<b:inputSecret field-size="lg" id="senha" placeholder="Enter password" 
+				    							value="#{loginBean.usuario.senha}"  required="true" requiredMessage="Campo Obrigatório: Senha"/>
+				    	</b:column>
+				    </b:row>
+				    <b:row>
+				    	<b:column>
+				    		<b:commandButton look="btn btn-success btn-block btn-lg" id="btnEntrar" action="#{loginBean.logar}" value="Entrar"/>
+				    	</b:column>
+				    </b:row>
+				    <b:row>
+				    	<b:column>
+				    		<h:commandLink class="btn btn-link btn-block btn-lg" id="btnEsqueceuSenha" value="Esqueci a Senha"/>
+				  	 	</b:column>
+				   </b:row>
 				</h:form>
-			</div>
-		</div>
+			</b:jumbotron>
+		</b:container>	
 	</h:body>
 </html>

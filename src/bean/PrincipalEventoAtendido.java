@@ -1,16 +1,21 @@
 package bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="principal_evento")
+@Entity
+@Table(name="principal_evento")
 public class PrincipalEventoAtendido {
 
 	@Id
 	@GeneratedValue
 	private int id;
 	private String descricao;
+	
+	@Column(name="descricao_outro")
 	private String descricaoOutro;
 
 	public String getDescricaoOutro() {

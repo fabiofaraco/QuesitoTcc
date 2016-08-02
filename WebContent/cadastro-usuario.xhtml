@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	   xmlns:h="http://java.sun.com/jsf/html"
-	   xmlns:f="http://java.sun.com/jsf/core">
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:b="http://bootsfaces.net/ui">
 	   
 <h:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Cadastro de Usuários</title>
-	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="resources/css/styles.css" rel="stylesheet"/>
 </h:head>
-<h:body id="corpo">
-		<div class="container">
-			<h:form id="frm" class="form-horizontal" method="post">
+<h:body>
+		<b:container>
+			<h:form id="frm" method="post">
 				<div class="page-header">
 					<div class="row">
 					  <div class="col-sm-10">
@@ -23,73 +23,127 @@
 					  </div>
 					</div>
 				</div>
-				<h:messages />
-				<div class="form-group">
-					<h:outputLabel for="nome" class="control-label col-sm-1" value="Nome"/>
-					<div class="col-sm-5">
-						  	<h:inputText class="form-control" id="nome" value="#{usuarioBean.usuario.nome}" 
-						  												required="true" requiredMessage="Campo Obrigatório: nome"/>
-					</div>	
-				</div>
+				<b:messages />
 				
-				<div class="form-group">
-					<h:outputLabel for="rg" class="control-label col-sm-1" value="RG"/>
-					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="rg" value="#{usuarioBean.usuario.rg}" 
-						  												required="true" requiredMessage="Campo Obrigatório: RG"/>
-					</div>	
-				</div>
 				
-				<div class="form-group">
-					<h:outputLabel for="cpf" class="control-label col-sm-1" value="CPF"/>
-					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="cpf" value="#{usuarioBean.usuario.cpf}" 
-						  												required="true" requiredMessage="Campo Obrigatório: CPF"/>
-					</div>	
-				</div>
+				<b:row>
+					<b:column span="6">
+						<b:message for="nome"/>	
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="6">
+						<b:inputText id="nome" 
+									 value="#{usuarioBean.usuario.nome}" 
+						  			 placeholder="Nome"	
+						  			 required="true" 
+						  			 requiredMessage="Campo Obrigatório: nome"/>
+					</b:column>
+					
+				</b:row>
+				<b:row>
+					<b:column span="3">
+						<b:message for="rg"/>	
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="2" >
+						<b:inputText id="rg" 
+									 value="#{usuarioBean.usuario.rg}" 
+							  		 placeholder="RG" 
+							  		 required="true" 
+							  		 requiredMessage="Campo Obrigatório: RG"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="3">
+						<b:message for="cpf"/>	
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="2">
+						<b:inputText id="cpf" 
+									 value="#{usuarioBean.usuario.cpf}"  
+							  		 placeholder="CPF" 
+							  		 required="true" 
+							  		 requiredMessage="Campo Obrigatório: CPF"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="4">
+						<b:message for="perfil"/>	
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="4">
+						<b:selectOneMenu id="perfil" 
+										 value = "#{usuarioBean.usuario.perfil.id}">
+							 
+							 <f:selectItem itemLabel ="Selecione o Peffil..." 
+							 			   noSelectionOption ="true" 
+							 			   required="true" 
+										   requiredMessage="Campo Obrigatório: Perfil"/>
+							 
+							 <f:selectItems value="#{usuarioBean.perfis}" 
+							 				var="perfil" 
+							 				itemValue="#{perfil.id}" 
+							 				itemLabel="#{perfil.descricao}"/>
+						 </b:selectOneMenu>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="6">
+						<b:message for="email"/>	
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="6">
+						<b:inputText id="email" 
+									 value="#{usuarioBean.usuario.email}" 
+						  			 placeholder="Email"	
+						  			 required="true" 
+						  			 requiredMessage="Campo Obrigatório: Email"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="2">
+						<b:message for="senha"/>	
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="2">
+						<b:inputSecret id="senha" 
+									   value="#{usuarioBean.usuario.senha}" 
+						  			   placeholder="Senha"
+						  			   required="true" 
+						  			   requiredMessage="Campo Obrigatório: Senha"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="3">
+						<b:message for="confirmaSenha"/>	
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="2">
+						<b:inputSecret id="confirmaSenha" 
+									   value="#{usuarioBean.usuario.confirmaSenha}" 
+						  			   placeholder="Confirma Senha"	
+						  			   required="true" 
+						  			   requiredMessage="Campo Obrigatório: Confirma Senha"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column>
+						<b:commandButton id="btnSalvar" 
+										 look="btn btn-primary btn-lg" 
+										 value="Salvar" 
+										 action="#{usuarioBean.salvar}"/>
+					</b:column>
+				</b:row>
 				
-				<div class="form-group">
-					<h:outputLabel class="control-label col-sm-1"  value="Perfil" for="perfil"/>
-					<div class="col-sm-5">
-						<h:selectOneMenu class="form-control" id="perfil" value = "#{usuarioBean.usuario.perfil.id}">
-							 <f:selectItem itemLabel ="Selecione..." noSelectionOption ="true" />
-							 <f:selectItems
-								 value="#{usuarioBean.perfis}"
-								 var="perfil"
-								 itemValue="#{perfil.id}"
-								 itemLabel="#{perfil.descricao}"/>
-						 </h:selectOneMenu>	
-				    </div>
-				</div>
-				
-				<div class="form-group">
-					<h:outputLabel for="email" class="control-label col-sm-1" value="Email"/>
-					<div class="col-sm-5">
-						  	<h:inputText class="form-control" id="email" value="#{usuarioBean.usuario.email}" 
-						  												required="true" requiredMessage="Campo Obrigatório: Email"/>
-					</div>	
-				</div>
-				
-				<div class="form-group">
-					<h:outputLabel for="senha" class="control-label col-sm-1" value="Senha"/>
-					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="senha" value="#{usuarioBean.usuario.senha}" 
-						  												required="true" requiredMessage="Campo Obrigatório: Senha"/>
-					</div>	
-				</div>
-				
-				<div class="form-group">
-					<h:outputLabel for="confirmaSenha" class="control-label col-sm-1" value="Confirma Senha"/>
-					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="confirmaSenha" value="#{usuarioBean.usuario.confirmaSenha}" 
-						  												required="true" requiredMessage="Campo Obrigatório: Confirma Senha"/>
-					</div>	
-				</div>
-				
-				<h:inputHidden id="id" value="#{usuarioBean.usuario.id}" />	
-				<h:commandButton id="btnSalvar" value="Salvar" class="btn btn-success btn-lg col-sm-offset-1 col-sm-1" action="#{usuarioBean.salvar}"/>
-				
+				<h:inputHidden id="id" value="#{usuarioBean.usuario.id}" />
 			</h:form>
-		</div>
+		</b:container>
 </h:body>
 </html>

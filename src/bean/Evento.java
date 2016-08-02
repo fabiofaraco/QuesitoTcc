@@ -1,72 +1,98 @@
 package bean;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-@Entity(name="eventos")
+@Entity
+@Table(name = "eventos")
 public class Evento {
 
 	@Id
 	@GeneratedValue
 	private int id;
-
+	
+	@Transient
+	private int nrVitimasFatais;
+	@Transient
+	private int nrVitimasNaoFatais;
+	
+	@Transient
 	private String obm;
-
-	
-	private PrincipalEventoAtendido principalEventoAtendido = new PrincipalEventoAtendido();
-
-	private int numeroDeVitimasFatais;
-	private int numeroDeVitimasNaoFatais;
-
-	private String comandanteDaObm;
-	private String comandanteDoSocorro;
-
-	private String comoFoiAvisado;
-
-	private Calendar recebimentoDoAviso = new GregorianCalendar();
-	private Calendar saidaDaObm = new GregorianCalendar();
-	private Calendar chegadaAcena = new GregorianCalendar();
-	private Calendar retornoAObm = new GregorianCalendar();
-
-
-//	private Endereco endereco = new Endereco();
-
-	private String areaDaObm;
-
+	@Transient
+	private String comandanteObm;
+	@Transient
+	private String comandanteSocorro;
+	@Transient
+	private String formaDeAviso;
+	@Transient
+	private String areaObm;
+	@Transient
 	private String dpResponsavel;
+	@Transient
+	private String socorroChegouPrimeiro;
+	@Transient
+	private String outrosSocorros;
+	@Transient
+	private String especieDoBem;
+	@Transient
+	private String respQuantoContinente;
+	@Transient
+	private String respQuantoConteudo;
+	@Transient
+	private String comoOriginou;
+	@Transient
+	private String ondeOriginou;
+	@Transient
+	private String situacaoEvento;
+	@Transient
+	private String formaEstabelecimentoMaterial;
+	@Transient
+	private String salvamento;
+	@Transient
+	private String responsavelSalvamento;
+	@Transient
+	private String meiosSalvamento;
+	@Transient
+	private String retiradaCadaver;
+	@Transient
+	private String responsavelRetiradaCadaver;
+	@Transient
+	private String meiosRetiradaCadaver;
+	@Transient
+	private String retiradaBens;
+	@Transient
+	private String responsavelRetiradaBens;
+	@Transient
+	private String meiosRetiradaBens;
 
-
-	private MovimentoDeMaterial movimentoDeMaterial = new MovimentoDeMaterial();
-
-
-	private NaturezaDoBem naturezaDoBem = new NaturezaDoBem();
-
-
-	private ResponsabilidadePeloBem responsabilidadePeloBem = new ResponsabilidadePeloBem();
-
-
-	private Tripulacao tripulacao = new Tripulacao();
-
-
-	private ProvavelCausa provavelCausa = new ProvavelCausa();
-
-
-	private AcaoDeSocorro acaoDeSocorro = new AcaoDeSocorro();
-
-
-	private Salvamento salvamento = new Salvamento();
-
-
-	private RetiradaDeCadaver retiradaDeCadaver = new RetiradaDeCadaver();
-
+	private Date dataEvento = new Date();
 	
-	private ProtecaoDeBens protecaoDeBens = new ProtecaoDeBens();
+	@Transient
+	private Calendar dataRecebimento = new GregorianCalendar();
+	@Transient
+	private Calendar saidaObm = new GregorianCalendar();
+	@Transient
+	private Calendar chegadaCena = new GregorianCalendar();
+	@Transient
+	private Calendar retornoObm = new GregorianCalendar();
+	
+	@ManyToOne
+	private PrincipalEventoAtendido principalEventoAtendido = new PrincipalEventoAtendido();
+	
+	private Endereco endereco = new Endereco();
+	@Transient
+	private FinalidadeDoBem finalidadeDoBem = new FinalidadeDoBem();
+	@Transient
+	private List<Tripulacao> tripulantes;
 
 	public int getId() {
 		return id;
@@ -76,12 +102,245 @@ public class Evento {
 		this.id = id;
 	}
 
+	public int getNrVitimasFatais() {
+		return nrVitimasFatais;
+	}
+
+	public void setNrVitimasFatais(int nrVitimasFatais) {
+		this.nrVitimasFatais = nrVitimasFatais;
+	}
+
+	public int getNrVitimasNaoFatais() {
+		return nrVitimasNaoFatais;
+	}
+
+	public void setNrVitimasNaoFatais(int nrVitimasNaoFatais) {
+		this.nrVitimasNaoFatais = nrVitimasNaoFatais;
+	}
+
 	public String getObm() {
 		return obm;
 	}
 
 	public void setObm(String obm) {
 		this.obm = obm;
+	}
+
+	public String getComandanteObm() {
+		return comandanteObm;
+	}
+
+	public void setComandanteObm(String comandanteObm) {
+		this.comandanteObm = comandanteObm;
+	}
+
+	public String getComandanteSocorro() {
+		return comandanteSocorro;
+	}
+
+	public void setComandanteSocorro(String comandanteSocorro) {
+		this.comandanteSocorro = comandanteSocorro;
+	}
+
+	public String getFormaDeAviso() {
+		return formaDeAviso;
+	}
+
+	public void setFormaDeAviso(String formaDeAviso) {
+		this.formaDeAviso = formaDeAviso;
+	}
+
+	public String getAreaObm() {
+		return areaObm;
+	}
+
+	public void setAreaObm(String areaObm) {
+		this.areaObm = areaObm;
+	}
+
+	public String getDpResponsavel() {
+		return dpResponsavel;
+	}
+
+	public void setDpResponsavel(String dpResponsavel) {
+		this.dpResponsavel = dpResponsavel;
+	}
+
+	public String getSocorroChegouPrimeiro() {
+		return socorroChegouPrimeiro;
+	}
+
+	public void setSocorroChegouPrimeiro(String socorroChegouPrimeiro) {
+		this.socorroChegouPrimeiro = socorroChegouPrimeiro;
+	}
+
+	public String getOutrosSocorros() {
+		return outrosSocorros;
+	}
+
+	public void setOutrosSocorros(String outrosSocorros) {
+		this.outrosSocorros = outrosSocorros;
+	}
+
+	public String getEspecieDoBem() {
+		return especieDoBem;
+	}
+
+	public void setEspecieDoBem(String especieDoBem) {
+		this.especieDoBem = especieDoBem;
+	}
+
+	public String getRespQuantoContinente() {
+		return respQuantoContinente;
+	}
+
+	public void setRespQuantoContinente(String respQuantoContinente) {
+		this.respQuantoContinente = respQuantoContinente;
+	}
+
+	public String getRespQuantoConteudo() {
+		return respQuantoConteudo;
+	}
+
+	public void setRespQuantoConteudo(String respQuantoConteudo) {
+		this.respQuantoConteudo = respQuantoConteudo;
+	}
+
+	public String getComoOriginou() {
+		return comoOriginou;
+	}
+
+	public void setComoOriginou(String comoOriginou) {
+		this.comoOriginou = comoOriginou;
+	}
+
+	public String getOndeOriginou() {
+		return ondeOriginou;
+	}
+
+	public void setOndeOriginou(String ondeOriginou) {
+		this.ondeOriginou = ondeOriginou;
+	}
+
+	public String getSituacaoEvento() {
+		return situacaoEvento;
+	}
+
+	public void setSituacaoEvento(String situacaoEvento) {
+		this.situacaoEvento = situacaoEvento;
+	}
+
+	public String getFormaEstabelecimentoMaterial() {
+		return formaEstabelecimentoMaterial;
+	}
+
+	public void setFormaEstabelecimentoMaterial(
+			String formaEstabelecimentoMaterial) {
+		this.formaEstabelecimentoMaterial = formaEstabelecimentoMaterial;
+	}
+
+	public String getSalvamento() {
+		return salvamento;
+	}
+
+	public void setSalvamento(String salvamento) {
+		this.salvamento = salvamento;
+	}
+
+	public String getResponsavelSalvamento() {
+		return responsavelSalvamento;
+	}
+
+	public void setResponsavelSalvamento(String responsavelSalvamento) {
+		this.responsavelSalvamento = responsavelSalvamento;
+	}
+
+	public String getMeiosSalvamento() {
+		return meiosSalvamento;
+	}
+
+	public void setMeiosSalvamento(String meiosSalvamento) {
+		this.meiosSalvamento = meiosSalvamento;
+	}
+
+	public String getRetiradaCadaver() {
+		return retiradaCadaver;
+	}
+
+	public void setRetiradaCadaver(String retiradaCadaver) {
+		this.retiradaCadaver = retiradaCadaver;
+	}
+
+	public String getResponsavelRetiradaCadaver() {
+		return responsavelRetiradaCadaver;
+	}
+
+	public void setResponsavelRetiradaCadaver(String responsavelRetiradaCadaver) {
+		this.responsavelRetiradaCadaver = responsavelRetiradaCadaver;
+	}
+
+	public String getMeiosRetiradaCadaver() {
+		return meiosRetiradaCadaver;
+	}
+
+	public void setMeiosRetiradaCadaver(String meiosRetiradaCadaver) {
+		this.meiosRetiradaCadaver = meiosRetiradaCadaver;
+	}
+
+	public String getRetiradaBens() {
+		return retiradaBens;
+	}
+
+	public void setRetiradaBens(String retiradaBens) {
+		this.retiradaBens = retiradaBens;
+	}
+
+	public String getResponsavelRetiradaBens() {
+		return responsavelRetiradaBens;
+	}
+
+	public void setResponsavelRetiradaBens(String responsavelRetiradaBens) {
+		this.responsavelRetiradaBens = responsavelRetiradaBens;
+	}
+
+	public String getMeiosRetiradaBens() {
+		return meiosRetiradaBens;
+	}
+
+	public void setMeiosRetiradaBens(String meiosRetiradaBens) {
+		this.meiosRetiradaBens = meiosRetiradaBens;
+	}
+
+	public Calendar getDataRecebimento() {
+		return dataRecebimento;
+	}
+
+	public void setDataRecebimento(Calendar dataRecebimento) {
+		this.dataRecebimento = dataRecebimento;
+	}
+
+	public Calendar getSaidaObm() {
+		return saidaObm;
+	}
+
+	public void setSaidaObm(Calendar saidaObm) {
+		this.saidaObm = saidaObm;
+	}
+
+	public Calendar getChegadaCena() {
+		return chegadaCena;
+	}
+
+	public void setChegadaCena(Calendar chegadaCena) {
+		this.chegadaCena = chegadaCena;
+	}
+
+	public Calendar getRetornoObm() {
+		return retornoObm;
+	}
+
+	public void setRetornoObm(Calendar retornoObm) {
+		this.retornoObm = retornoObm;
 	}
 
 	public PrincipalEventoAtendido getPrincipalEventoAtendido() {
@@ -93,165 +352,36 @@ public class Evento {
 		this.principalEventoAtendido = principalEventoAtendido;
 	}
 
-	public int getNumeroDeVitimasFatais() {
-		return numeroDeVitimasFatais;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setNumeroDeVitimasFatais(int numeroDeVitimasFatais) {
-		this.numeroDeVitimasFatais = numeroDeVitimasFatais;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
-	public int getNumeroDeVitimasNaoFatais() {
-		return numeroDeVitimasNaoFatais;
+	public FinalidadeDoBem getFinalidadeDoBem() {
+		return finalidadeDoBem;
 	}
 
-	public void setNumeroDeVitimasNaoFatais(int numeroDeVitimasNaoFatais) {
-		this.numeroDeVitimasNaoFatais = numeroDeVitimasNaoFatais;
+	public void setFinalidadeDoBem(FinalidadeDoBem finalidadeDoBem) {
+		this.finalidadeDoBem = finalidadeDoBem;
 	}
 
-	public String getComandanteDaObm() {
-		return comandanteDaObm;
+	public List<Tripulacao> getTripulantes() {
+		return tripulantes;
 	}
 
-	public void setComandanteDaObm(String comandanteDaObm) {
-		this.comandanteDaObm = comandanteDaObm;
+	public void setTripulantes(List<Tripulacao> tripulantes) {
+		this.tripulantes = tripulantes;
+	}
+	
+	public Date getDataEvento() {
+		return dataEvento;
 	}
 
-	public String getComandanteDoSocorro() {
-		return comandanteDoSocorro;
+	public void setDataEvento(Date dataEvento) {
+		this.dataEvento = dataEvento;
 	}
 
-	public void setComandanteDoSocorro(String comandanteDoSocorro) {
-		this.comandanteDoSocorro = comandanteDoSocorro;
-	}
-
-	public String getComoFoiAvisado() {
-		return comoFoiAvisado;
-	}
-
-	public void setComoFoiAvisado(String comoFoiAvisado) {
-		this.comoFoiAvisado = comoFoiAvisado;
-	}
-
-	public Calendar getRecebimentoDoAviso() {
-		return recebimentoDoAviso;
-	}
-
-	public void setRecebimentoDoAviso(Calendar recebimentoDoAviso) {
-		this.recebimentoDoAviso = recebimentoDoAviso;
-	}
-
-	public Calendar getSaidaDaObm() {
-		return saidaDaObm;
-	}
-
-	public void setSaidaDaObm(Calendar saidaDaObm) {
-		this.saidaDaObm = saidaDaObm;
-	}
-
-	public Calendar getChegadaAcena() {
-		return chegadaAcena;
-	}
-
-	public void setChegadaAcena(Calendar chegadaAcena) {
-		this.chegadaAcena = chegadaAcena;
-	}
-
-	public Calendar getRetornoAObm() {
-		return retornoAObm;
-	}
-
-	public void setRetornoAObm(Calendar retornoAObm) {
-		this.retornoAObm = retornoAObm;
-	}
-
-
-	public String getAreaDaObm() {
-		return areaDaObm;
-	}
-
-	public void setAreaDaObm(String areaDaObm) {
-		this.areaDaObm = areaDaObm;
-	}
-
-	public String getDpResponsavel() {
-		return dpResponsavel;
-	}
-
-	public void setDpResponsavel(String dpResponsavel) {
-		this.dpResponsavel = dpResponsavel;
-	}
-
-	public MovimentoDeMaterial getMovimentoDeMaterial() {
-		return movimentoDeMaterial;
-	}
-
-	public void setMovimentoDeMaterial(MovimentoDeMaterial movimentoDeMaterial) {
-		this.movimentoDeMaterial = movimentoDeMaterial;
-	}
-
-	public NaturezaDoBem getNaturezaDoBem() {
-		return naturezaDoBem;
-	}
-
-	public void setNaturezaDoBem(NaturezaDoBem naturezaDoBem) {
-		this.naturezaDoBem = naturezaDoBem;
-	}
-
-	public ResponsabilidadePeloBem getResponsabilidadePeloBem() {
-		return responsabilidadePeloBem;
-	}
-
-	public void setResponsabilidadePeloBem(
-			ResponsabilidadePeloBem responsabilidadePeloBem) {
-		this.responsabilidadePeloBem = responsabilidadePeloBem;
-	}
-
-	public Tripulacao getTripulacao() {
-		return tripulacao;
-	}
-
-	public void setTripulacao(Tripulacao tripulacao) {
-		this.tripulacao = tripulacao;
-	}
-
-	public ProvavelCausa getProvavelCausa() {
-		return provavelCausa;
-	}
-
-	public void setProvavelCausa(ProvavelCausa provavelCausa) {
-		this.provavelCausa = provavelCausa;
-	}
-
-	public AcaoDeSocorro getAcaoDeSocorro() {
-		return acaoDeSocorro;
-	}
-
-	public void setAcaoDeSocorro(AcaoDeSocorro acaoDeSocorro) {
-		this.acaoDeSocorro = acaoDeSocorro;
-	}
-
-	public Salvamento getSalvamento() {
-		return salvamento;
-	}
-
-	public void setSalvamento(Salvamento salvamento) {
-		this.salvamento = salvamento;
-	}
-
-	public RetiradaDeCadaver getRetiradaDeCadaver() {
-		return retiradaDeCadaver;
-	}
-
-	public void setRetiradaDeCadaver(RetiradaDeCadaver retiradaDeCadaver) {
-		this.retiradaDeCadaver = retiradaDeCadaver;
-	}
-
-	public ProtecaoDeBens getProtecaoDeBens() {
-		return protecaoDeBens;
-	}
-
-	public void setProtecaoDeBens(ProtecaoDeBens protecaoDeBens) {
-		this.protecaoDeBens = protecaoDeBens;
-	}
 }

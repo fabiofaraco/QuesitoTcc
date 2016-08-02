@@ -1,10 +1,18 @@
 package bean;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class RetiradaDeCadaver {
 
+	@Column(name="retirada_cadaver")
 	private String houveRetiradaDeCadaver;
+	
+	@Column(name="responsavel_retirada")
 	private String porQuem;
+	
+	@Column(name="meios_utilizados_retirada")
 	private String meiosUtilizados;
 	
 	public String getHouveRetiradaDeCadaver() {

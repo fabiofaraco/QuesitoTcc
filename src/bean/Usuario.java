@@ -33,7 +33,7 @@ public class Usuario {
 	@Column(nullable=false, length=50)
 	private String cpf;
 	
-	@Column(nullable=false)
+	@Column(name="data_nascimento", nullable=false)
 	private Calendar dataNascimento = new GregorianCalendar();
 	
 	@Column(nullable=false, length=100)

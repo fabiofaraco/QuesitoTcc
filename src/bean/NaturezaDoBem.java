@@ -1,10 +1,13 @@
 package bean;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
+@Embeddable
 public class NaturezaDoBem {
 	
+	@Column(name="especie_bem")
 	private String especieDoBem;
 	
 	@ManyToOne
