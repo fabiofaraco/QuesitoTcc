@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 
 import util.FacesUtil;
+import bean.EstadoCivil;
 import bean.Requerente;
 import dao.GenericDao;
 
@@ -14,6 +15,7 @@ import dao.GenericDao;
 public class RequerenteBean {
 	private Requerente requerente = new Requerente();
 	private List<Requerente> requerentes;
+	private List<EstadoCivil> estadosCivis;
 	
 	public String salvar() {
 		Dao<Requerente> dao = new GenericDao<Requerente>(Requerente.class);
@@ -61,6 +63,12 @@ public class RequerenteBean {
 	}
 	
 //	---------------------------------------------------------------------------------------------------
+	
+	public List<EstadoCivil> getEstadosCivis() {
+		Dao<EstadoCivil> dao = new GenericDao<EstadoCivil>(EstadoCivil.class);
+		estadosCivis = dao.getLista("select e from EstadoCivil e");
+		return estadosCivis;
+	}
 	
 	public Requerente getRequerente() {
 		return requerente;

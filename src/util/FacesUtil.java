@@ -6,6 +6,9 @@ import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import bean.Usuario;
 
 public class FacesUtil {
 	
@@ -19,8 +22,6 @@ public class FacesUtil {
 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, summary, ""));
 	}
 	
-//	----------------------------------------------------------------------------------------------------------------
-	
 	public static void addMessageWarn(String summary, String detail) {
 		FacesContext.getCurrentInstance()
 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, summary, detail));
@@ -30,8 +31,6 @@ public class FacesUtil {
 		FacesContext.getCurrentInstance()
 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, summary, ""));
 	}
-	
-//	----------------------------------------------------------------------------------------------------------------
 	
 	public static void addMessageError(String summary, String detail) {
 		FacesContext.getCurrentInstance()
@@ -45,10 +44,9 @@ public class FacesUtil {
 	
 	public static void addMessageError() {
 		FacesContext.getCurrentInstance()
-			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, getMessage("MSG_OPERACAO_NAO_REALIZADA"), getMessage("MSG_ERRO_INESPERADO")));
+			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+					getMessage("MSG_OPERACAO_NAO_REALIZADA"), getMessage("MSG_ERRO_INESPERADO")));
 	}
-	
-//	----------------------------------------------------------------------------------------------------------------
 	
 	public static void addMessageFatal(String summary, String detail) {
 		FacesContext.getCurrentInstance()
@@ -60,13 +58,9 @@ public class FacesUtil {
 			.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, summary, ""));
 	}
 	
-//	----------------------------------------------------------------------------------------------------------------	
-	
 	public static String getParameter(String parameter) {
 		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap() .get(parameter);
-	}
-	
-//	----------------------------------------------------------------------------------------------------------------	
+	}	
 	
 	public static int getParameterInt(String parameter) {
 		try {
@@ -75,8 +69,6 @@ public class FacesUtil {
 			return 0;
 		}		
 	}
-	
-//	----------------------------------------------------------------------------------------------------------------
 	
 	public static String getMessage(String message) {  
       
@@ -92,4 +84,15 @@ public class FacesUtil {
         	return "Não foi possível completar a operação";
         }
     }
+	
+	public static Usuario getUsuarioSessao() {
+		FacesContext context;
+		HttpSession session;
+		
+		context = FacesContext.getCurrentInstance();
+		session = (HttpSession) context.getExternalContext().getSession(false);
+	    
+		return (Usuario)session.getAttribute("usuario");
+	}
+	
 }

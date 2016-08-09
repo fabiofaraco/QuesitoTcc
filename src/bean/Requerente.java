@@ -1,42 +1,46 @@
 package bean;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="requerentes")
+@Table(name="REQUERENTES")
 public class Requerente {
 	
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue
+	@Column(name="ID")
 	private int id;
 	
-	@Column(nullable=false, length=50)
+	@Column(name="NOME")
 	private String nome;
 	
-	@Column(nullable=false, length=50)
+	@Column(name="EMAIL")
 	private String email;
 	
-	@Column(nullable=false, length=50)
+	@Column(name="PROFISSAO")
 	private String profissao;
 	
-	@Column(name="estado_civil", nullable=false, length=50)
-	private String estadoCivil;
+	@ManyToOne
+	@JoinColumn(name="ID_ESTADO_CIVIL")
+	private EstadoCivil estadoCivil = new EstadoCivil();
 	
-	@Column(name="data_nascimento", nullable=false)
-	private Calendar dataNascimento = new GregorianCalendar();
+	@Column(name="DT_NASCIMENTO")
+	private Calendar dataNascimento = Calendar.getInstance();
 	
-	@Column(nullable=false, length=50)
-	private String rg;
+	@Column(name="RG")
+	private Long rg;
 	
-	@Column(nullable=false, length=50)
-	private String cpf;
+	@Column(name="CPF")
+	private Long cpf;
 	
 	@Embedded
 	private Endereco endereco = new Endereco();
@@ -60,6 +64,14 @@ public class Requerente {
 		this.nome = nome;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getProfissao() {
 		return profissao;
 	}
@@ -68,11 +80,11 @@ public class Requerente {
 		this.profissao = profissao;
 	}
 
-	public String getEstadoCivil() {
+	public EstadoCivil getEstadoCivil() {
 		return estadoCivil;
 	}
 
-	public void setEstadoCivil(String estadoCivil) {
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 
@@ -84,19 +96,19 @@ public class Requerente {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getRg() {
+	public Long getRg() {
 		return rg;
 	}
 
-	public void setRg(String rg) {
+	public void setRg(Long rg) {
 		this.rg = rg;
 	}
 
-	public String getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
@@ -116,11 +128,4 @@ public class Requerente {
 		this.telefone = telefone;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 }

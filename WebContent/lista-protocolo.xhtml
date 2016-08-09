@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:b="http://bootsfaces.net/ui">	 
+<h:head>
+	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	  <title>Lista de Protocolos</title>
+	  <link href="resources/css/styles.css" rel="stylesheet"/>
+	  <script src="resources/js/jquery-2.2.2.min.js"/>
+	  
+	  <script type="text/javascript">	
+	  	   $(document).ready(function(){
+	  		   if(#{protocoloBean.carregaModal}) {
+			      $('.modalClass').modal();
+			   }
+			}); 
+	   </script>
+</h:head>
+<h:body>
+	<b:container fluid="true">
+		<h:form id="frm" method="post">
+			<div class="page-header">
+				<div class="row">
+				  <div class="col-sm-10">
+				  	<h2 class="col-sm-12">Lista de Protocolos</h2>
+				  </div>
+				  <div id="opcoes" class="col-sm-2" >
+					  <h:commandLink value="Voltar" action="menu" class="col-sm-6" />
+					  <h:commandLink id="opcaoSair" value="Sair" class="col-sm-6" />
+				  </div>
+				</div>
+			</div>
+			<b:messages/>
+			<b:row>
+				<b:column span="2">
+					<b:inputText id="cpf" 
+								 name="cpf"
+								 converterMessage="Digite apenas números"
+								 placeholder="CPF do Requerente"
+								 required="true"
+								 requiredMessage="Campo Obrigatório: Cpf"
+								 validatorMessage="O Cpf deve conter 11 digitos"
+								 value="#{protocoloBean.protocolo.requerente.cpf}">
+								 
+						<f:validateLength minimum="11" maximum="11"/>
+						<f:convertNumber integerOnly="true"
+										 maxFractionDigits="0"
+										 pattern="###########" />
+					</b:inputText>
+				</b:column>
+				<b:column span="2">
+					<b:inputText id="dataEvento"
+								 name="dataEvento"
+								 placeholder="Data do Evento"
+								 required="true"
+								 requiredMessage="Campo Obrigatório: Data do Evento"
+								 value="#{protocoloBean.protocolo.evento.dataEvento.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</b:inputText>
+				</b:column>
+				<b:column span="2">
+					<b:commandButton id="btnAssociar" 
+								 	 value="Associar"
+								 	 action="#{protocoloBean.carregarDados}"/>
+				</b:column>
+				
+			</b:row>
+			
+			<br/>
+						
+			<h:dataTable class="table table-hover"
+						 headerClass="cabecalho"
+						 id="tabelaEventos" 
+						 value="#{protocoloBean.protocolos}" 
+						 var="protocolo" >
+						
+				<h:column>
+			    	<f:facet name="header">
+			      		<h:outputText  value="Nº Protocolo"/>
+			    	</f:facet>
+			     	<h:outputText value="#{protocolo.id}"/>
+			  	</h:column>
+			  	<h:column>
+			    	<f:facet name="header">
+			      		<h:outputText  value="Nome do Requerente"/>
+			    	</f:facet>
+			     	<h:outputText value="#{protocolo.requerente.nome}"/>
+			  	</h:column>
+			    <h:column>
+			    	<f:facet name="header">
+			      		<h:outputText  value="Logradouro do Evento"/>
+			    	</f:facet>
+			     	<h:outputText value="#{protocolo.evento.endereco.logradouro} 
+			     						- #{protocolo.evento.endereco.complemento} 
+			     						- #{protocolo.evento.endereco.bairro}"/>
+			  	</h:column>
+			  	<h:column class="btnExcluir">
+			    	<f:facet name="header">
+			      		<h:outputText  value=""/>
+			    	</f:facet>
+					  <h:commandButton actionListener="#{protocoloBean.remover}" 
+					  				   class="btn btn-danger" 
+					  				   immediate="true" 
+					  				   render="@all" 
+					  				   value="Cancelar"  >
+					  	<f:param name="id" 
+					  			 value="#{protocolo.id}"/>
+					  </h:commandButton>
+			  	</h:column>
+			</h:dataTable>
+		
+			<b:modal id="amodal" title="Associar" styleClass="modalClass">
+				<b:row>
+					<b:column span="12">
+						<h4><h:outputLabel value="Dados do Requerente"/></h4>
+					</b:column>
+					<b:column span="1">
+						<h:outputLabel value="Nome:"/>
+					</b:column>
+					<b:column span="11">
+						<h:outputLabel style="color:red" 
+									   value="#{protocoloBean.protocolo.requerente.nome}"/>
+					</b:column>
+					
+					<b:column span="1">
+						<h:outputLabel value="CPF:"/>
+					</b:column>
+					<b:column span="11">
+						<h:outputLabel style="color:red" 
+									   value="#{protocoloBean.protocolo.requerente.cpf}"/>
+					</b:column>	
+					<b:column span="12">
+						<hr/>
+					</b:column>
+					<b:column span="12">
+						<h4><h:outputLabel value="Dados do Evento"/></h4>
+					</b:column>
+					<b:column span="1">
+						<h:outputLabel value="Data:"/>
+					</b:column>
+					<b:column span="11">
+						<h:outputLabel style="color:red" 
+									   value="#{protocoloBean.protocolo.evento.dataEvento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputLabel>
+					</b:column>	
+					<b:column span="12">
+						<h:outputLabel for="localEvento" value="Local do Evento"/>
+					</b:column>
+					<b:column span="12">
+						<b:selectOneMenu id="localEvento"
+										 value = "#{protocoloBean.protocolo.evento.id}">
+							 
+							 <f:selectItems itemLabel="#{evento.endereco.logradouro} - #{evento.endereco.complemento} - #{evento.endereco.bairro}"
+							 				itemValue="#{evento.id}" 
+							 				value="#{protocoloBean.eventos}" 
+							 				var="evento"/>
+						 </b:selectOneMenu>
+					
+					</b:column>	
+				</b:row>
+				<f:facet name="footer">
+			        <b:button data-dismiss="modal"
+			        		  look="btn btn-danger btn-lg btn-lg" 
+			        		  onclick="$('.modalClass').modal('hide')"
+			        		  value="Fechar" />
+			        		  
+			        <b:commandButton action="#{protocoloBean.salvar}"
+			        				 id="btnSalvar" 
+			        				 look="btn btn-success btn-lg" 
+									 value="Salvar"/>
+			    </f:facet>
+			</b:modal>
+		</h:form>
+	</b:container>
+</h:body>
+</html>

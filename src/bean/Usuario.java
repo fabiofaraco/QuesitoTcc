@@ -1,99 +1,120 @@
 package bean;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="usuarios")
+@Table(name="USUARIOS")
 public class Usuario {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
+	@Column(name="ID")
 	private int id;
 	
-	@Column(nullable=false, length=50)
+	@Column(name="CPF")
+	private Long cpf;
+	
+	@Column(name="EMAIL")
 	private String email;
 	
-	@Column(nullable=false, length=50)
-	private String senha;
-	
 	@ManyToOne
+	@JoinColumn(name="ID_PERFIL")
 	private Perfil perfil = new Perfil();
 	
-	@Column(nullable=false, length=50)
-	private String rg;
+	@Column(name="RG")
+	private Long rg;
 	
-	@Column(nullable=false, length=50)
-	private String cpf;
+	@Column(name="DT_NASCIMENTO")
+	private Calendar dataNascimento = Calendar.getInstance();
 	
-	@Column(name="data_nascimento", nullable=false)
-	private Calendar dataNascimento = new GregorianCalendar();
-	
-	@Column(nullable=false, length=100)
+	@Column(name="NOME")
 	private String nome;
+
+	@Column(name="SENHA")
+	private String senha;
 	
 	@Transient
 	private String confirmaSenha;
-	
-	public String getConfirmaSenha() {
-		return confirmaSenha;
-	}
-	public void setConfirmaSenha(String confirmaSenha) {
-		this.confirmaSenha = confirmaSenha;
-	}
-	public Perfil getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-	public String getRg() {
-		return rg;
-	}
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public Calendar getDataNascimento() {
-		return dataNascimento;
-	}
-	public void setDataNascimento(Calendar dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public Long getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(Long cpf) {
+		this.cpf = cpf;
+	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getSenha() {
-		return senha;
+
+	public Perfil getPerfil() {
+		return perfil;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
+
+	public Long getRg() {
+		return rg;
+	}
+
+	public void setRg(Long rg) {
+		this.rg = rg;
+	}
+
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
+
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
+	}
+	
 }

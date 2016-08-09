@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 
 import util.FacesUtil;
 import bean.Evento;
-import bean.PrincipalEventoAtendido;
 import dao.GenericDao;
 
 @ManagedBean
@@ -16,7 +15,6 @@ public class EventoBean {
 	
 	private Evento evento = new Evento();
 	private List<Evento> eventos;
-	private List<PrincipalEventoAtendido> principaisEventos;
 	
 	public Evento getEvento() {
 		return evento;
@@ -42,7 +40,7 @@ public class EventoBean {
 		} catch(Exception e) {
 			FacesUtil.addMessageError();
 		}
-		return "lista-quesito";
+		return "lista-evento";
 	}
 	
 	
@@ -68,13 +66,6 @@ public class EventoBean {
 		Dao<Evento> dao = new GenericDao<Evento>(Evento.class);
 		eventos = dao.getLista("select e from Evento e");
 		return eventos;
-	}
-
-
-	public List<PrincipalEventoAtendido> getPrincipaisEventos() {
-		Dao<PrincipalEventoAtendido> dao = new GenericDao<PrincipalEventoAtendido>(PrincipalEventoAtendido.class);
-		principaisEventos = dao.getLista("select p from PrincipalEventoAtendido p");
-		return principaisEventos;
 	}
 
 }

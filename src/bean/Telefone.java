@@ -6,25 +6,26 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Telefone {
 	
-	@Column(name="tel_residencial")
-	private String telResidencial;
+	@Column(name="TEL_RES")
+	private Long telResidencial;
 	
-	@Column(name="tel_celular")
-	private String telCelular;
+	@Column(name="TEL_CEL")
+	private Long telCelular;
 
-	public String getTelResidencial() {
+	public Long getTelResidencial() {
 		return telResidencial;
 	}
 
-	public void setTelResidencial(String telResidencial) {
+	public void setTelResidencial(Long telResidencial) {
 		this.telResidencial = telResidencial;
 	}
 
-	public String getTelCelular() {
+	public Long getTelCelular() {
 		return telCelular;
 	}
 
-	public void setTelCelular(String telCelular) {
+	public void setTelCelular(Long telCelular) {
 		this.telCelular = telCelular;
 	}
+	
 }

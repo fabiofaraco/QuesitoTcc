@@ -83,9 +83,20 @@
 				<div class="form-group">
 					<h:outputLabel for="estadoCivil" class="control-label col-sm-2" value="Estado Civil"/>
 					<div class="col-sm-4">
-						  	<b:inputText class="form-control" id="estadoCivil" value="#{requerenteBean.requerente.estadoCivil}" 
-						  												required="true" requiredMessage="Campo Obrigatório: Estado Civil"/>
-					</div>	
+						<h:selectOneMenu id="estadoCivil" class="form-control"
+										 value = "#{requerenteBean.requerente.estadoCivil.id}">
+							 
+							 <f:selectItem itemLabel ="Selecione o Estado Civil..." 
+							 			   noSelectionOption ="true" 
+							 			   required="true" 
+										   requiredMessage="Campo Obrigatório: Estado Civil"/>
+							 
+							 <f:selectItems value="#{requerenteBean.estadosCivis}" 
+							 				var="estadoCivil" 
+							 				itemValue="#{estadoCivil.id}" 
+							 				itemLabel="#{estadoCivil.descricao}"/>
+						 </h:selectOneMenu>
+					</div>
 					<div class="col-sm-3">	
 						<b:message for="estadoCivil"/>
 					</div>

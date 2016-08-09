@@ -12,7 +12,7 @@
 			
 		<property
 			name ="hibernate.hbm2ddl.auto"
-			value ="update"/>
+			value ="validate"/>
 			
 		<property
 			name ="javax.persistence.jdbc.driver"
@@ -29,6 +29,10 @@
 		<property
 			name ="javax.persistence.jdbc.url"
 			value ="jdbc:mysql://localhost:3306/quesito"/>
+			
+		<!--  <property 
+			name="hibernate.show_sql" 
+			value="true"/> -->
   	</properties>
   </persistence-unit>
 </persistence>

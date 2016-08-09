@@ -28,24 +28,10 @@
 				<div class="form-group">
 					<h:outputLabel for="dataEvento" class="control-label col-sm-2" value="Data Evento"/>
 					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="dataEvento" value="#{eventoBean.evento.dataEvento}"> 
+						  	<h:inputText class="form-control" id="dataEvento" value="#{eventoBean.evento.dataEvento.time}"> 
 						  		<f:convertDateTime pattern="dd/MM/yyyy"/>
 						  	</h:inputText>
 					</div>	
-				</div>
-				
-				<div class="form-group">
-					<h:outputLabel class="control-label col-sm-2"  value="Principal Evento" for="principalEvento"/>
-					<div class="col-sm-5">
-						<h:selectOneMenu class="form-control" id="principalEvento" value ="#{eventoBean.evento.principalEventoAtendido.id}">
-							 <f:selectItem itemLabel ="Selecione..." noSelectionOption ="true" />
-							 <f:selectItems
-								 value="#{eventoBean.principaisEventos}"
-								 var="principalEvento"
-								 itemValue="#{principalEvento.id}"
-								 itemLabel="#{principalEvento.descricao}"/>
-						 </h:selectOneMenu>	
-				    </div>
 				</div>
 				
 				<div class="form-group">
