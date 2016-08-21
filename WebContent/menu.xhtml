@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	   xmlns:h="http://java.sun.com/jsf/html"
 	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:ui="http://java.sun.com/jsf/facelets"
 	   xmlns:b="http://bootsfaces.net/ui">
-	   
+	    
   <h:head>
 	  	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	  	<title>Menu Principal</title> 
@@ -11,7 +12,7 @@
   </h:head>
 
 	<h:body id="corpo">
-		<div id="divMenu" style="margin:2%">
+		<div id="divMenu" style="margin:2%;">
 			<h:form id="frm" method="post">
 				 <div class="page-header">
 					<div class="row">
@@ -24,30 +25,16 @@
 					</div>
 				</div>
 				
-				<b:row style="text-align:center"> 
-					<b:column span="3" >
-						<h:commandLink action="lista-usuario?faces-redirect=true">
-							<h:graphicImage library="img" name="firefighter.png" alt="Usuários" width="150" />
-						</h:commandLink>
-					</b:column>
-					
-					<b:column span="3">
-							<h:commandLink action="lista-requerente?faces-redirect=true">
-								<h:graphicImage library="img" name="requerente.png" alt="Requerentes" width="150" />
+				<b:row style="text-align:center">
+					<ui:repeat var="menu" value="#{menuBean.menus}">
+						<b:column span="3" class="colunaMenu">
+							<h:commandLink action="#{menu.href()}">
+								<h:graphicImage library="img" name="#{menu.nomeImg}" alt="#{menu.alt}" width="150" height="150"/>
+								<br/>
+								<h:outputText value="#{menu.nome}" class="fonteMenu"/>
 							</h:commandLink>
-					</b:column>
-					
-					<b:column span="3">
-						<h:commandLink action="lista-evento?faces-redirect=true">
-							<h:graphicImage library="img" name="quesito.png" alt="Quesito" width="136" />
-						</h:commandLink>
-					</b:column>
-					
-					<b:column span="3">	
-						<h:commandLink action="lista-protocolo">
-							<h:graphicImage library="img" name="protocolo.png" alt="Protocolo" width="136" />
-						</h:commandLink>
-					</b:column>
+						</b:column>
+					</ui:repeat>
 				</b:row>
 			</h:form>
 		</div>

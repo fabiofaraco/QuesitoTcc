@@ -4,6 +4,12 @@
 	font-size:17px;
 }
 
+#divMenu h2{
+	color:grey; 
+	font-weight:bold;
+	
+}
+
 .cabecalho {
 	background-color:#b30000;
 	color:white;
@@ -11,6 +17,7 @@
 
 #corpo {
 	margin: 15px;
+	background-color: #f2f2f2;
 }
 
 .btnAlterar {
@@ -19,4 +26,14 @@
 
 .btnExcluir {
 	width: 20px;
+}
+
+.colunaMenu {
+	margin-top:30px;
+}
+
+.fonteMenu {
+	color:grey; 
+	font-weight:bold;
+	font-size:26px;
 }
