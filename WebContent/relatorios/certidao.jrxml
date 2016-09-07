@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-08-20T01:02:13 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="certidao" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5bc1058d-1cf6-4d8d-bda5-86c448e97d64">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="QuesitoTcc"/>
+	<queryString>
+		<![CDATA[select * from requerentes]]>
+	</queryString>
+	<field name="CPF" class="java.lang.Long"/>
+	<field name="NOME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="560" height="16" uuid="23f7a08f-ff3d-4812-80c1-0a6d54f41afb">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[SECRETARIA DE ESTADO DE DEFESA CIVIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="560" height="16" uuid="3e323ad1-4c63-426c-bdbf-8425119657a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CORPO DE BOMBEIROS MILITAR DO ESTADO DO RIO DE JANEIRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="32" width="560" height="16" uuid="cad75213-7a12-4252-840e-26e12732b112">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[xxxx GBM - Tijuca]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="480" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="" x="0" y="1" width="560" height="479" uuid="e2a5d3d4-dd5d-4697-950d-bfaba5bdfd1b"/>
+				<box topPadding="5" leftPadding="5" bottomPadding="5" rightPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tendo em vista que o nacional, Sr(a). " +$F{NOME} +", CPF: xxxxxxxxxxxxxxxx, residente à xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx solicitou Certidão de Ocorrência sobre os fatos constantes do registro de evento número xxxxxxxxxxxxx, confeccionado em virtude do atendimento prestado no evento <b>XXXXXXXXXXXX</b>, comandado pelo xxxxxxxxxxxxxx, ocorrido no(a) xxxxxxxxxxxxxxxxxxxxxxx ; CERTIFICO que, conforme consta no BOL Nº xxxxxx de xxxxxxxxxxx, do xxxx GBM protocolado sob o nº 001/2016, de acordo com o item <b>NATUREZA DO BEM ONDE OCORREU O EVENTO - ESPÉCIE: </b>	xxxxxxxxxxxxxxxxxxxxxxxx. <b>FINALIDADE: </b> xxxxxx. Item <b>PROPRIEDADE, POSSE OU RESPONSABILIDADE PELOS BENS ENVOLVIDOS NO EVENTO - QUANTO AO CONTINENTE: </b> XXXXXXXXXXXXXXXXXXXXXXXXX . <b>QUANTO AO CONTEÚDO:</b> xxxxxxxxxxxxxxxxxxx. Item <b>TRIPULAÇÃO(EMBARCAÇÃO, AUTOMÓVEL, AERONAVE, ETC): </b>XXXXXX"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

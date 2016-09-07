@@ -28,6 +28,11 @@ public class MenuBean {
 	private final String NOME_PROTOCOLO = "Protocolo";
 	private final String NOME_IMG_PROTOCOLO = "protocolo.png";
 	
+	private final String ALT_RELATORIO = "Relatórios";
+	private final String HREF_RELATORIO = "lista-protocolo?faces-redirect=true";
+	private final String NOME_RELATORIO = "Relatórios";
+	private final String NOME_IMG_RELATORIO = "relatorio.png";
+	
 	public ArrayList<Menu> getMenus() {
 		ArrayList<Menu> menus = new ArrayList<>();
 		
@@ -58,6 +63,14 @@ public class MenuBean {
 		menuProtocolo.setNome(NOME_PROTOCOLO);
 		menuProtocolo.setNomeImg(NOME_IMG_PROTOCOLO);
 		menus.add(menuProtocolo);
+		
+		
+		/*Menu menuRelatorio = new Menu();
+		menuRelatorio.setAlt(ALT_RELATORIO);
+		menuRelatorio.setHref(HREF_RELATORIO);
+		menuRelatorio.setNome(NOME_RELATORIO);
+		menuRelatorio.setNomeImg(NOME_IMG_RELATORIO);
+		menus.add(menuRelatorio);*/
 		
 		return menus;
 	}

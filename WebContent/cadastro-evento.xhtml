@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	   xmlns:h="http://java.sun.com/jsf/html"
-	   xmlns:f="http://java.sun.com/jsf/core">
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:b="http://bootsfaces.net/ui">
 	   
 <h:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Cadastro de Usuários</title>
-	<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<title>Cadastro de Eventos</title>
 	<link href="resources/css/styles.css" rel="stylesheet"/>
 </h:head>
-<h:body id="corpo">
-		<div class="container">
-			<h:form id="frm" class="form-horizontal" method="post">
+<h:body>
+		<b:container>
+			<h:form id="frm" method="post">
 				<div class="page-header">
 					<div class="row">
 					  <div class="col-sm-10">
@@ -23,44 +23,164 @@
 					  </div>
 					</div>
 				</div>
-				<h:messages />
 				
-				<div class="form-group">
-					<h:outputLabel for="dataEvento" class="control-label col-sm-2" value="Data Evento"/>
-					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="dataEvento" value="#{eventoBean.evento.dataEvento.time}"> 
-						  		<f:convertDateTime pattern="dd/MM/yyyy"/>
-						  	</h:inputText>
-					</div>	
-				</div>
+				<b:messages/>
 				
-				<div class="form-group">
-					<h:outputLabel for="email" class="control-label col-sm-2" value="Logradouro"/>
-					<div class="col-sm-7">
-						  	<h:inputText class="form-control" id="logradouro" value="#{eventoBean.evento.endereco.logradouro}" 
-						  												required="true" requiredMessage="Campo Obrigatório: Logradouro"/>
-					</div>	
-				</div>
+				<b:row>
+					<b:column span="2">
+						<h:outputLabel for="obm" value="OBM"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="1">
+						<b:inputText id="obm" 
+									 value="#{eventoBean.evento.obm}" 
+						  			 placeholder="OBM"	
+						  			 required="true" 
+						  			 requiredMessage="Campo Obrigatório: OBM"/>
+					</b:column>
+					<b:column span="3">
+						<b:message for="obm" />
+					</b:column>
+				</b:row>
 				
-				<div class="form-group">
-					<h:outputLabel for="complemento" class="control-label col-sm-2" value="Complemento"/>
-					<div class="col-sm-2">
-						  	<h:inputText class="form-control" id="complemento" value="#{eventoBean.evento.endereco.complemento}" 
-						  												required="true" requiredMessage="Campo Obrigatório: Complemento"/>
-					</div>	
-				</div>
+				<br/>
 				
-				<div class="form-group">
-					<h:outputLabel for="bairro" class="control-label col-sm-2" value="Bairro"/>
-					<div class="col-sm-3">
-						  	<h:inputText class="form-control" id="bairro" value="#{eventoBean.evento.endereco.bairro}" 
-						  												required="true" requiredMessage="Campo Obrigatório: Bairro"/>
-					</div>	
-				</div>
+				<b:row>
+					<b:column span="3">
+						<h:outputLabel for="dataEvento" value="Data Evento"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="3">
+						<b:inputText id="dataEvento" 
+									 value="#{eventoBean.evento.dataEvento.time}" 
+						  			 placeholder="Data do Evento"	
+						  			 required="true" 
+						  			 requiredMessage="Campo Obrigatório: Data do Evento">
+						  			 
+							<f:convertDateTime pattern="dd/MM/yyyy"/>						  			 
+						</b:inputText>
+					</b:column>
+					<b:column span="4">
+						<b:message for="dataEvento" />
+					</b:column>
+				</b:row>
 				
-				<h:inputHidden id="id" value="#{eventoBean.evento.id}" />	
-				<h:commandButton id="btnSalvar" value="Salvar" class="btn btn-success btn-lg col-sm-offset-2 col-sm-1" action="#{eventoBean.salvar}"/>
+				<br/>
+				
+				<b:row>
+					<b:column span="3">
+						<h:outputLabel for="logradouro" value="Logradouro"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="5">
+						<b:inputText id="logradouro" 
+									 value="#{eventoBean.evento.endereco.logradouro}" 
+						  			 placeholder="Logradouro"	
+						  			 required="true" 
+						  			 requiredMessage="Campo Obrigatório: Logradouro"/>
+						</b:column>
+						
+						<b:column span="3">
+							<b:message for="logradouro" />
+						</b:column>
+				</b:row>
+				
+				<br/>
+				
+				<b:row>
+					<b:column span="3">
+						<h:outputLabel for="complemento" value="Complemento"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="4">
+						<b:inputText id="complemento" 
+									 value="#{eventoBean.evento.endereco.complemento}" 
+						  			 placeholder="Complemento"	
+						  			 required="true" 
+						  			 requiredMessage="Campo Obrigatório: Complemento"/>
+						</b:column>
+				
+						<b:column span="4">
+							<b:message for="complemento" />
+						</b:column>
+				</b:row>
+				
+				<br/>
+				
+				<b:row>
+					<b:column span="3">
+						<h:outputLabel for="bairro" value="Bairro"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="3">
+						<b:inputText id="bairro" 
+									 value="#{eventoBean.evento.endereco.bairro}" 
+						  			 placeholder="Bairro"	
+						  			 required="true" 
+						  			 requiredMessage="Campo Obrigatório: Bairro"/>
+						</b:column>
+						
+						<b:column span="3">
+							<b:message for="bairro" />
+						</b:column>
+				</b:row>
+				
+				<br/>
+				
+				<b:row>
+					<b:column span="3">
+						<h:outputLabel for="especieBem" value="Espécie do Bem"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="6">
+						<b:inputTextarea id="especieBem" 
+									 	 value="#{eventoBean.evento.especie}" 
+						  			 	 placeholder="Espécie do Bem"	
+						  			 	 required="true" 
+						  			 	 requiredMessage="Campo Obrigatório: Espécie do Bem"/>
+						</b:column>
+						<b:column span="3">
+							<b:message for="especieBem" />
+						</b:column>
+				</b:row>
+				
+				<br/>
+				
+				<b:row>
+					<b:column span="3">
+						<h:outputLabel for="finalidade" value="Finalidade"/>
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column span="4">
+						<b:inputText id="finalidade" 
+									 value="#{eventoBean.evento.finalidade}" 
+						  			 placeholder="Finalidade"	
+						  			 required="true" 
+						  			 requiredMessage="Campo Obrigatório: Finalidade"/>
+						</b:column>
+						<b:column span="3">
+							<b:message for="finalidade" />
+						</b:column>
+				</b:row>
+				
+				<b:row>
+					<b:column>
+						<b:commandButton id="btnSalvar" 
+										 look="btn btn-success btn-lg" 
+										 value="Salvar" 
+										 action="#{eventoBean.salvar}"/>
+					</b:column>
+				</b:row>
+		
+				<h:inputHidden id="id" value="#{eventoBean.evento.id}" />
 			</h:form>
-		</div>
+		</b:container>
 </h:body>
 </html>

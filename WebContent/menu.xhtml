@@ -35,6 +35,14 @@
 							</h:commandLink>
 						</b:column>
 					</ui:repeat>
+					
+					<b:column span="3" class="colunaMenu">
+							<h:commandLink action="#{relatorioBean.imprimirCertidao}">
+								<h:graphicImage library="img" name="relatorio.png" alt="Relatórios" width="150" height="150"/>
+								<br/>
+								<h:outputText value="Relatórios" class="fonteMenu"/>
+							</h:commandLink>
+						</b:column>
 				</b:row>
 			</h:form>
 		</div>
